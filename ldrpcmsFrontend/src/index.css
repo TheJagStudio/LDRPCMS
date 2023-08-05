@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+	font-family: 'Roboto', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body{
+	background-color: #f7f8fa;
+}
+
+.purpleBtnShadow {
+	box-shadow: 0px 0px 40px -7px #8833ff33;
+}
+
+.purpleBtnShadow:hover{
+	box-shadow: 0px 5px 40px -10px #8833ff88;
+}
+
+.shadowCustom {
+	box-shadow: 3px 8px 20px -10px #00000015;
+}
+
+.noScrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+	--primary-50: #f9f4ff;
+	--primary-100: #f0e5ff;
+	--primary-200: #e4d0ff;
+	--primary-300: #cfacff;
+	--primary-400: #b176ff;
+	--primary-500: #9442ff;
+	--primary-600: #8833ff;
+	--primary-700: #680ee2;
+	--primary-800: #5a12b7;
+	--primary-900: #4b1093;
+	--primary-950: #30006f;
+}
