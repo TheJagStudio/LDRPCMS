@@ -98,7 +98,7 @@ const SidebarRight = () => {
                                 swiperRef.current.swiper.slideTo(0);
                                 setCurrentSlide(0);
                             }}
-                            className={currentSlide == 1 ? "text-textColor-500 cursor-pointer" : "font-bold text-primary-600 "}
+                            className={currentSlide === 1 ? "text-textColor-500 cursor-pointer" : "font-bold text-primary-600 "}
                         >
                             Actions
                         </p>
@@ -107,7 +107,7 @@ const SidebarRight = () => {
                                 swiperRef.current.swiper.slideTo(1);
                                 setCurrentSlide(1);
                             }}
-                            className={currentSlide == 1 ? "font-bold text-primary-600 " : "text-textColor-500 cursor-pointer"}
+                            className={currentSlide === 1 ? "font-bold text-primary-600 " : "text-textColor-500 cursor-pointer"}
                         >
                             Complains
                         </p>

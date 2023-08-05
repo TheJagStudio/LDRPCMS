@@ -3,7 +3,7 @@ import React from "react";
 const CalendarMonth = ({ name, start, days, monthIndex, previousEnd, data }) => {
     let Today = new Date();
     let CurrentMonth = Today.getMonth() + 1;
-    let CurrentYear = Today.getFullYear();
+    // let CurrentYear = Today.getFullYear();
     let CurrentDay = Today.getDate();
     let backNumber = 14;
     return (
@@ -27,17 +27,17 @@ const CalendarMonth = ({ name, start, days, monthIndex, previousEnd, data }) => 
                     let title = [];
                     let description = [];
                     for (let i = 0; i < data.length; i++) {
-                        if (data[i].day == index + 1) {
+                        if (data[i].day === index + 1) {
                             color.push(data[i].color);
                             title.push(data[i].title);
                             description.push(data[i].description);
                         }
                     }
                     return (
-                        <div key={index} className={" font-semibold group h-12 w-12 border border-transparent hover:scale-105 transition-all py-3 rounded-full focus:bg-textColor-500 focus:text-white cursor-pointer relative " + (monthIndex == CurrentMonth && index + 1 == CurrentDay ? " text-white bg-primary-600 purpleBtnShadow " : "") + (color.length != 0 ? "bg-" + color[0] + "-500 text-white" : "text-textColor-500 hover:border-gray-500 ")}>
+                        <div key={index} className={" font-semibold group h-12 w-12 border border-transparent hover:scale-105 transition-all py-3 rounded-full focus:bg-textColor-500 focus:text-white cursor-pointer relative " + (monthIndex === CurrentMonth && index + 1 === CurrentDay ? " text-white bg-primary-600 purpleBtnShadow " : "") + (color.length !== 0 ? "bg-" + color[0] + "-500 text-white" : "text-textColor-500 hover:border-gray-500 ")}>
                             <p className="">{index + 1}</p>
-                            <div className={"absolute bottom-[110%] z-20 w-48 scale-0 group-hover:scale-100 transition-all duration-300 " + ((index + start) % 7 == 6 ? "-translate-x-36 origin-bottom-right" : (index + start) % 7 == 5 ? "-translate-x-32 origin-bottom-right" : (index + start) % 7 < 4 && (index + start) % 7 >= 2 ? "-translate-x-16 origin-bottom" : "origin-bottom-left")}>
-                                {color.length != 0
+                            <div className={"absolute bottom-[110%] z-20 w-48 scale-0 group-hover:scale-100 transition-all duration-300 " + ((index + start) % 7 === 6 ? "-translate-x-36 origin-bottom-right" : (index + start) % 7 === 5 ? "-translate-x-32 origin-bottom-right" : (index + start) % 7 < 4 && (index + start) % 7 >= 2 ? "-translate-x-16 origin-bottom" : "origin-bottom-left")}>
+                                {color.length !== 0
                                     ? (() => {
                                           return (
                                               <div className={"w-full h-full rounded-lg flex flex-col items-start p-2 pb-1 pt-0 justify-center shadow-lg shadow-" + color[0] + "-500/10 bg-" + color[0] + "-50 border-2 border-" + color[0] + "-500 "}>

@@ -27,8 +27,8 @@ const HomePage = () => {
                         </div>
                     </div>
                     <ul className="w-fit h-12 border-2 border-borderColor rounded-full flex flex-nowrap overflow-hidden shadow-inner cursor-pointer">
-                        <TabNavItem title="Overview" id="tab1" classes={"w-28 py-2.5 text-center text-center text-textColor-500 border-r-2 border-borderColor transition-all " + (activeTab == "tab1" ? "bg-white font-bold" : "")} activeTab={activeTab} setActiveTab={setActiveTab} />
-                        <TabNavItem title="Attendance" id="tab2" classes={"w-28 py-2.5 text-center text-center text-textColor-500 transition-all " + (activeTab == "tab2" ? "bg-white font-bold" : "")} activeTab={activeTab} setActiveTab={setActiveTab} />
+                        <TabNavItem title="Overview" id="tab1" classes={"w-28 py-2.5 text-center text-center text-textColor-500 border-r-2 border-borderColor transition-all " + (activeTab === "tab1" ? "bg-white font-bold" : "")} activeTab={activeTab} setActiveTab={setActiveTab} />
+                        <TabNavItem title="Attendance" id="tab2" classes={"w-28 py-2.5 text-center text-center text-textColor-500 transition-all " + (activeTab === "tab2" ? "bg-white font-bold" : "")} activeTab={activeTab} setActiveTab={setActiveTab} />
                     </ul>
                     <button className="bg-primary-500 text-white flex flex-nowrap items-center px-3 py-2 gap-2 rounded-full w-fit h-12 purpleBtnShadow hover:-translate-y-1 transition-all group">
                         <svg className="w-6 h-6 group-hover:rotate-180 transition-all" viewBox="0 0 24 24" fill="none">

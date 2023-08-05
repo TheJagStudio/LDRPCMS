@@ -15,7 +15,7 @@ const CalendarPage = () => {
     let CurrentMonthStart = new Date(CurrentYear, CurrentMonth, 1).getDay();
     let CurrentDay = Today.getDate();
     let YearStart = new Date(CurrentYear, 0, 1).getDay();
-    if (CurrentYear % 4 == 0) {
+    if (CurrentYear % 4 === 0) {
         MonthDays[1] = 29;
     }
     let [calendarData, setCalendarData] = useState([
@@ -172,7 +172,7 @@ const CalendarPage = () => {
                             <rect x={13} y={16} width={4} height={2} rx={0.5} fill="currentColor" />
                         </svg>
                         <div className="relative">
-                            <p className="absolute -top-6 -left-4 text-6xl text-textColor-100/80 font-bold -z-10 select-none">{currentSlide == 0 ? "Year" : "Month"}</p>
+                            <p className="absolute -top-6 -left-4 text-6xl text-textColor-100/80 font-bold -z-10 select-none">{currentSlide === 0 ? "Year" : "Month"}</p>
                             <p className="font-bold text-textColor-500">Calendar</p>
                         </div>
                     </div>
@@ -247,8 +247,8 @@ const CalendarPage = () => {
                                 let startOld = YearStart;
                                 YearStart = (startOld + MonthDays[index]) % 7;
                                 return (
-                                    <div key={index} className={"w-full h-full p-3 bg-white border-borderColor last:border-none " + (index % 4 == 3 ? "" : " xl:border-r ") + (index > 7 ? " border-b xl:border-b-0 " : " border-b")}>
-                                        <CalendarMonth name={month} monthIndex={index + 1} start={startOld} previousEnd={index != 0 ? MonthDays[index - 1] : MonthDays[11]} days={MonthDays[index]} data={calendarData[index]} />
+                                    <div key={index} className={"w-full h-full p-3 bg-white border-borderColor last:border-none " + (index % 4 === 3 ? "" : " xl:border-r ") + (index > 7 ? " border-b xl:border-b-0 " : " border-b")}>
+                                        <CalendarMonth name={month} monthIndex={index + 1} start={startOld} previousEnd={index !== 0 ? MonthDays[index - 1] : MonthDays[11]} days={MonthDays[index]} data={calendarData[index]} />
                                     </div>
                                 );
                             })}
@@ -286,7 +286,7 @@ const CalendarPage = () => {
                             </div>
                             {Array.from({ length: CurrentMonthStart }).map((_, index) => (
                                 <div key={index} className="font-semibold h-auto aspect-square w-full text-right p-4 text-xl border-b border-r border-borderColor text-textColor-200 py-3 cursor-default ">
-                                    {CurrentMonth != 0 ? MonthDays[CurrentMonth - 1] - CurrentMonthStart + 1 + index : MonthDays[11] - CurrentMonthStart + 1 + index}
+                                    {CurrentMonth !== 0 ? MonthDays[CurrentMonth - 1] - CurrentMonthStart + 1 + index : MonthDays[11] - CurrentMonthStart + 1 + index}
                                 </div>
                             ))}
                             {Array.from({ length: MonthDays[CurrentMonth] }).map((_, index) => {
@@ -297,7 +297,7 @@ const CalendarPage = () => {
                                 let description = [];
                                 let data = calendarData[CurrentMonth];
                                 for (let i = 0; i < data.length; i++) {
-                                    if (data[i].day == index + 1) {
+                                    if (data[i].day === index + 1) {
                                         color.push(data[i].color);
                                         title.push(data[i].title);
                                         start.push(data[i].start);
@@ -306,10 +306,10 @@ const CalendarPage = () => {
                                     }
                                 }
                                 return (
-                                    <div key={index} className={"font-semibold h-auto aspect-auto lg:aspect-square w-full text-right p-3 lg:p-4 text-xl border-borderColor text-textColor-500 py-3 cursor-default " + ((index + CurrentMonthStart) % 7 == 6 ? "border-b" : MonthDays[CurrentMonth] - ((MonthDays[CurrentMonth] + CurrentMonthStart) % 7) < index + 1 ? " border-r" : "border-b border-r")}>
+                                    <div key={index} className={"font-semibold h-auto aspect-auto lg:aspect-square w-full text-right p-3 lg:p-4 text-xl border-borderColor text-textColor-500 py-3 cursor-default " + ((index + CurrentMonthStart) % 7 === 6 ? "border-b" : MonthDays[CurrentMonth] - ((MonthDays[CurrentMonth] + CurrentMonthStart) % 7) < index + 1 ? " border-r" : "border-b border-r")}>
                                         <p>{index + 1}</p>
                                         <div className={"z-20 w-48 scale-100 transition-all duration-300 "}>
-                                            {color.length != 0
+                                            {color.length !== 0
                                                 ? (() => {
                                                       return (
                                                           <>
@@ -338,7 +338,7 @@ const CalendarPage = () => {
                             })}
                             {Array.from({ length: 7 - ((CurrentMonthStart + MonthDays[CurrentMonth]) % 7) }).map((_, index) => {
                                 return (
-                                    <div key={index} className={"font-semibold h-auto aspect-square w-full text-right p-4 text-xl border-borderColor text-textColor-200 py-3 cursor-default " + ((index + MonthDays[CurrentMonth] + CurrentMonthStart) % 7 == 6 ? "" : "border-r")}>
+                                    <div key={index} className={"font-semibold h-auto aspect-square w-full text-right p-4 text-xl border-borderColor text-textColor-200 py-3 cursor-default " + ((index + MonthDays[CurrentMonth] + CurrentMonthStart) % 7 === 6 ? "" : "border-r")}>
                                         {index + 1}
                                     </div>
                                 );
