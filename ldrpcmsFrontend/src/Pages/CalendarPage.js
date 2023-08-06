@@ -308,7 +308,7 @@ const CalendarPage = () => {
                                 return (
                                     <div key={index} className={"font-semibold h-auto aspect-auto lg:aspect-square w-full text-right p-3 lg:p-4 text-xl border-borderColor text-textColor-500 py-3 cursor-default " + ((index + CurrentMonthStart) % 7 === 6 ? "border-b" : MonthDays[CurrentMonth] - ((MonthDays[CurrentMonth] + CurrentMonthStart) % 7) < index + 1 ? " border-r" : "border-b border-r")}>
                                         <p>{index + 1}</p>
-                                        <div className={"z-20 w-48 scale-100 transition-all duration-300 "}>
+                                        <div className={"z-20 w-full scale-100 transition-all duration-300 "}>
                                             {color.length !== 0
                                                 ? (() => {
                                                       return (
