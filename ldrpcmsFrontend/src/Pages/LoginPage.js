@@ -43,7 +43,7 @@ const LoginPage = () => {
                                 <input className="form-checkbox is-outline w-4 h-4 accent-primary-600 bg-gray-100 border-gray-300 rounded-lg" type="checkbox" />
                                 <span className="line-clamp-1 text-textColor-400 text-sm">Remember me</span>
                             </label>
-                            <a href="" className="text-xs text-slate-400 transition-colors line-clamp-1 hover:text-primary-400 focus:text-slate-800 dark:text-navy-300 dark:hover:text-navy-100 dark:focus:text-navy-100">
+                            <a href="/" className="text-xs text-slate-400 transition-colors line-clamp-1 hover:text-primary-400 focus:text-slate-800 dark:text-navy-300 dark:hover:text-navy-100 dark:focus:text-navy-100">
                                 Forgot Password?
                             </a>
                         </div>

@@ -28,19 +28,19 @@ const Navbar = () => {
                     <div className="lg:flex hidden items-center gap-6">
                         <ul className="flex items-center gap-5 text-sm text-textColor-500">
                             <li>
-                                <a href="#">Dashboard</a>
+                                <a href="/">Dashboard</a>
                             </li>
                             <li>
-                                <a href="#">About Us</a>
+                                <a href="/">About Us</a>
                             </li>
                             <li>
-                                <a href="#">News</a>
+                                <a href="/">News</a>
                             </li>
                             <li>
-                                <a href="#">User Policy</a>
+                                <a href="/">User Policy</a>
                             </li>
                             <li>
-                                <a href="#">Contacts</a>
+                                <a href="/">Contacts</a>
                             </li>
                         </ul>
                         <div>
