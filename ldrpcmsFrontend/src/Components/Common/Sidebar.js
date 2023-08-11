@@ -11,8 +11,11 @@ const Sidebar = () => {
     const sidebarLinks = [
         {
             svg: (
-                <svg viewBox="0 0 32 32" className="w-6 h-6">
-                    <path d="M16 0C7.164 0 0 7.164 0 16s7.164 16 16 16 16-7.164 16-16S24.836 0 16 0zm0 30C8.28 30 2 23.72 2 16S8.28 2 16 2s14 6.28 14 14-6.28 14-14 14zm6.47-21.848-3.722 2.324-2.486 1.55a3.977 3.977 0 0 1 3.712 3.712l1.55-2.484 2.324-3.724a1 1 0 0 0-1.378-1.378zm-10.444 8.11-1.55 2.486-2.324 3.724A.996.996 0 0 0 9 24c.184 0 .368-.05.53-.152l3.722-2.324 2.486-1.55a3.979 3.979 0 0 1-3.712-3.712zm4.236-4.236C16.174 12.02 16.09 12 16 12c-2.21 0-4 1.79-4 4 0 .09.02.174.026.262a3.979 3.979 0 0 0 3.712 3.712c.088.006.172.026.262.026 2.21 0 4-1.79 4-4 0-.09-.02-.174-.026-.262a3.979 3.979 0 0 0-3.712-3.712zM14 16c0-1.102.898-2 2-2s2 .898 2 2-.898 2-2 2-2-.898-2-2z" fill="currentColor" />
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x={4} y={4} width={6} height={7} rx={1} fill="currentColor" stroke="currentColor" strokeWidth={2} strokeLinejoin="round" />
+                    <rect x={4} y={15} width={6} height={5} rx={1} fill="currentColor" stroke="currentColor" strokeWidth={2} strokeLinejoin="round" />
+                    <rect x={14} y={4} width={6} height={5} rx={1} fill="currentColor" stroke="currentColor" strokeWidth={2} strokeLinejoin="round" />
+                    <rect x={14} y={13} width={6} height={7} rx={1} fill="currentColor" stroke="currentColor" strokeWidth={2} strokeLinejoin="round" />
                 </svg>
             ),
             name: "Home",
@@ -36,35 +39,34 @@ const Sidebar = () => {
         },
         {
             svg: (
-                <svg viewBox="0 0 24 24" fill="none" className="w-7 h-7">
-                    <path d="M4.82698 7.13803L5.27248 7.36502L4.82698 7.13803ZM5.2682 18.7318L5.62175 19.0854H5.62175L5.2682 18.7318ZM17.862 16.173L17.635 15.7275L17.862 16.173ZM19.173 14.862L18.7275 14.635L19.173 14.862ZM19.173 7.13803L18.7275 7.36502V7.36502L19.173 7.13803ZM17.862 5.82698L18.089 5.38148V5.38148L17.862 5.82698ZM6.13803 5.82698L6.36502 6.27248L6.13803 5.82698ZM7.20711 16.7929L7.56066 17.1464L7.20711 16.7929ZM5 10.3C5 9.45167 5.00039 8.84549 5.03921 8.37032C5.07756 7.90099 5.15089 7.60366 5.27248 7.36502L4.38148 6.91103C4.17609 7.31413 4.08593 7.75771 4.04253 8.28889C3.99961 8.81423 4 9.46817 4 10.3H5ZM5 11.5V10.3H4V11.5H5ZM4 11.5V16.5H5V11.5H4ZM4 16.5V18.4136H5V16.5H4ZM4 18.4136C4 19.26 5.02329 19.6838 5.62175 19.0854L4.91465 18.3782C4.91754 18.3753 4.92812 18.368 4.94323 18.3654C4.9556 18.3632 4.96421 18.3654 4.96913 18.3674C4.97406 18.3695 4.98164 18.374 4.98888 18.3843C4.99771 18.3968 5 18.4095 5 18.4136H4ZM5.62175 19.0854L7.56066 17.1464L6.85355 16.4393L4.91465 18.3782L5.62175 19.0854ZM14.7 16H7.91421V17H14.7V16ZM17.635 15.7275C17.3963 15.8491 17.099 15.9224 16.6297 15.9608C16.1545 15.9996 15.5483 16 14.7 16V17C15.5318 17 16.1858 17.0004 16.7111 16.9575C17.2423 16.9141 17.6859 16.8239 18.089 16.6185L17.635 15.7275ZM18.7275 14.635C18.4878 15.1054 18.1054 15.4878 17.635 15.7275L18.089 16.6185C18.7475 16.283 19.283 15.7475 19.6185 15.089L18.7275 14.635ZM19 11.7C19 12.5483 18.9996 13.1545 18.9608 13.6297C18.9224 14.099 18.8491 14.3963 18.7275 14.635L19.6185 15.089C19.8239 14.6859 19.9141 14.2423 19.9575 13.7111C20.0004 13.1858 20 12.5318 20 11.7H19ZM19 10.3V11.7H20V10.3H19ZM18.7275 7.36502C18.8491 7.60366 18.9224 7.90099 18.9608 8.37032C18.9996 8.84549 19 9.45167 19 10.3H20C20 9.46817 20.0004 8.81423 19.9575 8.28889C19.9141 7.75771 19.8239 7.31413 19.6185 6.91103L18.7275 7.36502ZM17.635 6.27248C18.1054 6.51217 18.4878 6.89462 18.7275 7.36502L19.6185 6.91103C19.283 6.25247 18.7475 5.71703 18.089 5.38148L17.635 6.27248ZM14.7 6C15.5483 6 16.1545 6.00039 16.6297 6.03921C17.099 6.07756 17.3963 6.15089 17.635 6.27248L18.089 5.38148C17.6859 5.17609 17.2423 5.08593 16.7111 5.04253C16.1858 4.99961 15.5318 5 14.7 5V6ZM9.3 6H14.7V5H9.3V6ZM6.36502 6.27248C6.60366 6.15089 6.90099 6.07756 7.37032 6.03921C7.84549 6.00039 8.45167 6 9.3 6V5C8.46817 5 7.81423 4.99961 7.28889 5.04253C6.75771 5.08593 6.31413 5.17609 5.91103 5.38148L6.36502 6.27248ZM5.27248 7.36502C5.51217 6.89462 5.89462 6.51217 6.36502 6.27248L5.91103 5.38148C5.25247 5.71703 4.71703 6.25247 4.38148 6.91103L5.27248 7.36502ZM7.56066 17.1464C7.65443 17.0527 7.78161 17 7.91421 17V16C7.51639 16 7.13486 16.158 6.85355 16.4393L7.56066 17.1464Z" fill="currentColor" />
-                    <path d="M8.5 9.5L15.5 9.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M8.5 12.5L13.5 12.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx={12} cy={8} r={3} stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+                    <path d="M15.268 8a2 2 0 1 1 3.464 2 2 2 0 0 1-3.464-2Zm-10 0a2 2 0 1 1 3.464 2 2 2 0 0 1-3.464-2Z" stroke="currentColor" strokeWidth={2} />
+                    <path d="m16.882 18-.98.197.16.803h.82v-1Zm3.838-1.096.943-.334-.943.334Zm-5.94-2.194-.604-.796-1.157.879 1.234.767.528-.85ZM19.868 17h-2.985v2h2.985v-2Zm-.09.238a.208.208 0 0 1-.005-.103.217.217 0 0 1 .043-.097c.032-.04.059-.038.052-.038v2c1.146 0 2.274-1.08 1.796-2.43l-1.885.668ZM17 15c1.642 0 2.403 1.181 2.778 2.238l1.885-.668C21.198 15.259 19.948 13 17 13v2Zm-1.614.507C15.77 15.215 16.282 15 17 15v-2c-1.162 0-2.097.362-2.824.914l1.21 1.593Zm-1.133.053c1.039.646 1.474 1.772 1.648 2.637l1.96-.394c-.217-1.083-.824-2.867-2.552-3.942l-1.056 1.699Zm-5.033-.85.527.85 1.234-.767-1.157-.879-.605.796Zm-5.94 2.194.942.334-.942-.334ZM7.118 18v1h.82l.16-.803-.98-.197ZM7 15c.718 0 1.23.215 1.614.507l1.21-1.593C9.097 13.362 8.162 13 7 13v2Zm-2.778 2.238C4.597 16.181 5.358 15 7 15v-2c-2.948 0-4.198 2.259-4.663 3.57l1.885.668ZM4.132 17c-.006 0 .02-.002.053.038a.218.218 0 0 1 .043.097.21.21 0 0 1-.006.103l-1.885-.668C1.86 17.92 2.987 19 4.133 19v-2Zm2.986 0H4.133v2h2.985v-2Zm.98 1.197c.175-.865.61-1.991 1.65-2.637l-1.058-1.7c-1.728 1.075-2.335 2.86-2.553 3.942l1.96.394Z" fill="currentColor" />
+                    <path d="M12 14c3.572 0 4.592 2.551 4.883 4.009.109.541-.33.991-.883.991H8c-.552 0-.992-.45-.883-.991C7.408 16.55 8.428 14 12 14Z" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
                 </svg>
             ),
-            name: "HOD",
-            location: "/HOD",
+            name: "Users",
+            location: "/users",
         },
         {
             svg: (
                 <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
-                    <path d="M21 6L15.7071 11.2929C15.3166 11.6834 14.6834 11.6834 14.2929 11.2929L12.7071 9.70711C12.3166 9.31658 11.6834 9.31658 11.2929 9.70711L7 14" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M3 3V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21H21" stroke="currentColor" strokeLinecap="round" />
+                    <path d="M21 6L15.7071 11.2929C15.3166 11.6834 14.6834 11.6834 14.2929 11.2929L12.7071 9.70711C12.3166 9.31658 11.6834 9.31658 11.2929 9.70711L7 14" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M3 3V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21H21" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
                 </svg>
             ),
-            name: "Analytics",
-            location: "/analytics",
+            name: "PMS",
+            location: "/pms",
         },
         {
             svg: (
-                <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-                    <path d="M21 20H3" stroke="currentColor" strokeLinecap="round" />
-                    <path d="M10 16V10C10 8.89543 9.10457 8 8 8V8C6.89543 8 6 8.89543 6 10V16" stroke="currentColor" strokeLinecap="round" />
-                    <path d="M18 16V6C18 4.89543 17.1046 4 16 4V4C14.8954 4 14 4.89543 14 6V16" stroke="currentColor" strokeLinecap="round" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 32 32">
+                    <path d="M31 4h-3V1a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v20a1 1 0 0 0 1 1h3v5a1 1 0 0 0 1 1h9l3.293 3.293a.997.997 0 0 0 1.414 0L22 28h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-1 2v20h-8.828L18 29.172 14.828 26H6V6h24zM2 20V2h24v3H6a1 1 0 0 0-1 1v14H2zm8-8h16v1H10v-1zm0 3h16v1H10v-1zm0 3h16v1H10v-1z" fill="currentColor" />
                 </svg>
             ),
-            name: "Charts",
-            location: "/charts",
+            name: "Space",
+            location: "/space",
         },
     ];
 
@@ -79,10 +81,10 @@ const Sidebar = () => {
                         }}
                         to={link.location}
                         key={i}
-                        className={"transition-all duration-500 h-10 " + (currLocation === link.location ? "bg-primary-600" : "bg-white") + " flex items-center justify-center shadow-sm " + (sideBar ? "w-full px-3 rounded-lg" : "w-10 rounded-[20px]")}
+                        className={"transition-all duration-500 h-10 " + ((currLocation !== "/" ? link.location.includes(currLocation) : link.location === currLocation) ? "bg-primary-600" : "bg-white") + " flex items-center justify-center shadow-sm " + (sideBar ? "w-full px-3 rounded-lg" : "w-10 rounded-[20px]")}
                     >
-                        <span className={currLocation === link.location ? "text-white" : "text-primary-600"}>{link.svg}</span>
-                        <p className={"overflow-hidden " + (currLocation === link.location ? "text-white" : "text-primary-600") + " transition-all duration-500 " + (sideBar ? "lg:w-24 w-auto ml-2.5" : "w-0 ml-0")}>{link.name}</p>
+                        <span className={(currLocation !== "/" ? link.location.includes(currLocation) : link.location === currLocation) ? "text-white" : "text-primary-600"}>{link.svg}</span>
+                        <p className={"overflow-hidden " + ((currLocation !== "/" ? link.location.includes(currLocation) : link.location === currLocation) ? "text-white" : "text-primary-600") + " transition-all duration-500 " + (sideBar ? "lg:w-24 w-auto ml-2.5" : "w-0 ml-0")}>{link.name}</p>
                     </NavLink>
                 ))}
             </div>

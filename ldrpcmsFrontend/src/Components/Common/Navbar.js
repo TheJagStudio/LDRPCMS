@@ -18,7 +18,9 @@ const Navbar = () => {
                             className="bg-white p-3 rounded-full shadow cursor-pointer"
                         >
                             <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-textColor-400">
-                                <path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+                                <path className={(sideBar ? "translate-x-2 -translate-y-0.5 rotate-45" : "") + " transition-all"} d="M5 7h14M5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+                                <path className={(sideBar ? " scale-x-0" : "") + " transition-all"} d="M5 12h14M5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+                                <path className={(sideBar ? "-translate-x-2 translate-y-2 -rotate-45" : "") + " transition-all"} d="M5 17h14" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
                             </svg>
                         </div>
                         <a href="/" className="font-bold text-textColor-600">

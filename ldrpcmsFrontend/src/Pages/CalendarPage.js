@@ -1,27 +1,56 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import CalendarMonth from "../Components/Calendar/CalendarMonth";
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
+//
+//  data = [[0,1,2,3,4],[0,1,2,3,4],[0,1,2,3,4],[0,1,2,3,4]]
+//
+//  limit = 20
+//  start = 0
+//  end = start + limit
+//  setStart(Math.max(start + limit,data.length))
+//  setStart(Math.min(start - limit,0))
+//  {data.slice(start,end).map((item,index) => {})}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 const CalendarPage = () => {
     const swiperRef = useRef(null);
     const [currentSlide, setCurrentSlide] = useState(0);
-    let Today = new Date();
-    let Months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let MonthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    let CurrentYear = Today.getFullYear();
-    let CurrentMonth = Today.getMonth();
-    let CurrentMonthStart = new Date(CurrentYear, CurrentMonth, 1).getDay();
-    let CurrentDay = Today.getDate();
-    let YearStart = new Date(CurrentYear, 0, 1).getDay();
-    if (CurrentYear % 4 === 0) {
-        MonthDays[1] = 29;
-    }
+    const [Today, setToday] = useState(new Date());
+    const [Months, setMonths] = useState(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
+    const [MonthDays, setMonthDays] = useState([31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]);
+    const [CurrentYear, setCurrentYear] = useState(Today.getFullYear());
+    const [CurrentMonth, setCurrentMonth] = useState(Today.getMonth());
+    const [CurrentMonthStart, setCurrentMonthStart] = useState(new Date(CurrentYear, CurrentMonth, 1).getDay());
+    const [CurrentDay, setCurrentDay] = useState(Today.getDate());
+    const [YearStart, setYearStart] = useState(new Date(CurrentYear, 0, 1).getDay());
+    let TempYearStart = new Date(CurrentYear, 0, 1).getDay();
     let [calendarData, setCalendarData] = useState([
         [
             {
                 year: 2023,
+                day: 25,
+                title: "Holiday 1",
+                description: "This is a holiday",
+                color: "green",
+                start: "9:00",
+                end: "4:00",
+            },
+            {
+                year: 2024,
                 day: 25,
                 title: "Holiday 1",
                 description: "This is a holiday",
@@ -43,6 +72,15 @@ const CalendarPage = () => {
             {
                 year: 2023,
                 day: 12,
+                title: "Holiday 2",
+                description: "This is a holiday",
+                color: "green",
+                start: "9:00",
+                end: "4:00",
+            },
+            {
+                year: 2024,
+                day: 26,
                 title: "Holiday 2",
                 description: "This is a holiday",
                 color: "green",
@@ -156,6 +194,13 @@ const CalendarPage = () => {
             },
         ],
     ]);
+    useEffect(() => {
+        if (CurrentYear % 4 === 0) {
+            let tempMonthDays = MonthDays;
+            tempMonthDays[1] = 29;
+            setMonthDays(tempMonthDays);
+        }
+    });
     return (
         <div className="flex flex-col w-full h-full">
             <div className="w-full ">
@@ -188,7 +233,25 @@ const CalendarPage = () => {
                 <div className="border-b border-borderColor flex flex-wrap gap-2 lg:flex-nowrap items-center justify-between px-5 py-5">
                     <button className="rounded-full px-4 py-2 border border-borderColor purpleBtnShadow hover:-translate-y-1 transition-all text-textColor-500 hover:text-primary-500 hover:font-semibold">Today</button>
                     <div className="flex flex-nowrap gap-3 items-center justify-center">
-                        <button className="rounded-full p-2 border border-borderColor purpleBtnShadow hover:-translate-y-1 transition-all text-textColor-500 hover:text-primary-500 hover:font-semibold">
+                        <button
+                            onClick={() => {
+                                let tempCurrentYear = CurrentYear;
+                                setCurrentYear(tempCurrentYear - 1);
+                                setCurrentMonthStart(new Date(tempCurrentYear - 1, CurrentMonth, 1).getDay());
+                                setYearStart(new Date(tempCurrentYear - 1, 0, 1).getDay());
+                                console.log(tempCurrentYear - 1, (tempCurrentYear + 1) % 4);
+                                if ((tempCurrentYear - 1) % 4 === 0) {
+                                    let tempMonthDays = MonthDays;
+                                    tempMonthDays[1] = 29;
+                                    setMonthDays(tempMonthDays);
+                                } else {
+                                    let tempMonthDays = MonthDays;
+                                    tempMonthDays[1] = 28;
+                                    setMonthDays(tempMonthDays);
+                                }
+                            }}
+                            className="rounded-full p-2 border border-borderColor purpleBtnShadow hover:-translate-y-1 transition-all text-textColor-500 hover:text-primary-500 hover:font-semibold"
+                        >
                             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="m15 6-6 6 6 6" stroke="#33363F" strokeWidth={2} />
                             </svg>
@@ -196,7 +259,25 @@ const CalendarPage = () => {
                         <p className="text-lg text-textColor-600 font-bold">
                             {CurrentDay} {Months[CurrentMonth]} , {CurrentYear}
                         </p>
-                        <button className="rounded-full p-2 border border-borderColor purpleBtnShadow hover:-translate-y-1 transition-all text-textColor-500 hover:text-primary-500 hover:font-semibold">
+                        <button
+                            onClick={() => {
+                                let tempCurrentYear = CurrentYear;
+                                setCurrentYear(tempCurrentYear + 1);
+                                setCurrentMonthStart(new Date(tempCurrentYear + 1, CurrentMonth, 1).getDay());
+                                setYearStart(new Date(tempCurrentYear + 1, 0, 1).getDay());
+                                console.log(tempCurrentYear + 1, (tempCurrentYear + 1) % 4);
+                                if ((tempCurrentYear + 1) % 4 === 0) {
+                                    let tempMonthDays = MonthDays;
+                                    tempMonthDays[1] = 29;
+                                    setMonthDays(tempMonthDays);
+                                } else {
+                                    let tempMonthDays = MonthDays;
+                                    tempMonthDays[1] = 28;
+                                    setMonthDays(tempMonthDays);
+                                }
+                            }}
+                            className="rounded-full p-2 border border-borderColor purpleBtnShadow hover:-translate-y-1 transition-all text-textColor-500 hover:text-primary-500 hover:font-semibold"
+                        >
                             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="m9 6 6 6-6 6" stroke="#33363F" strokeWidth={2} />
                             </svg>
@@ -244,11 +325,12 @@ const CalendarPage = () => {
                     <SwiperSlide>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             {Months.map((month, index) => {
-                                let startOld = YearStart;
-                                YearStart = (startOld + MonthDays[index]) % 7;
+                                let startOld = TempYearStart;
+                                TempYearStart = (startOld + MonthDays[index]) % 7;
+
                                 return (
                                     <div key={index} className={"w-full h-full p-3 bg-white border-borderColor last:border-none " + (index % 4 === 3 ? "" : " xl:border-r ") + (index > 7 ? " border-b xl:border-b-0 " : " border-b")}>
-                                        <CalendarMonth name={month} monthIndex={index + 1} start={startOld} previousEnd={index !== 0 ? MonthDays[index - 1] : MonthDays[11]} days={MonthDays[index]} data={calendarData[index]} />
+                                        <CalendarMonth name={month} year={CurrentYear} monthIndex={index + 1} start={startOld} previousEnd={index !== 0 ? MonthDays[index - 1] : MonthDays[11]} days={MonthDays[index]} data={calendarData[index]} />
                                     </div>
                                 );
                             })}

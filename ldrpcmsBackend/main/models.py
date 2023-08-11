@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import time
 
 
 class Department(models.Model):
@@ -12,7 +13,7 @@ class Department(models.Model):
 
 class Semester(models.Model):
     name = models.CharField(max_length=10)
-    department = models.ForeignKey(department, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -21,8 +22,8 @@ class Semester(models.Model):
 
 class Division(models.Model):
     name = models.CharField(max_length=10)
-    department = models.ForeignKey(department, on_delete=models.CASCADE)
-    semester = models.ForeignKey(semester, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -31,9 +32,9 @@ class Division(models.Model):
 
 class Subject(models.Model):
     name = models.CharField(max_length=10)
-    department = models.ForeignKey(department, on_delete=models.CASCADE)
-    semester = models.ForeignKey(semester, on_delete=models.CASCADE)
-    division = models.ForeignKey(division, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
+    division = models.ForeignKey(Division, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -48,13 +49,14 @@ class Faculty(models.Model):
     CCDivison = models.ForeignKey(
         Division, on_delete=models.CASCADE, null=True, blank=True
     )
+    CCbatch = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
 
 
 class LabAssistant(models.Model):
-    User = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     phone = models.CharField(max_length=10)
     labName = models.CharField(max_length=10)
@@ -64,7 +66,7 @@ class LabAssistant(models.Model):
 
 
 class HOD(models.Model):
-    User = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     phone = models.CharField(max_length=10)
 
@@ -80,6 +82,38 @@ class Student(models.Model):
     division = models.ForeignKey(Division, on_delete=models.CASCADE)
     phone = models.CharField(max_length=10)
     batch = models.DateField()
+    is_member = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
+
+
+class EventDetails(models.Model):
+    eventType = models.CharField(max_length=50)
+    eventColor = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.eventType
+
+
+class CalendarDetails(models.Model):
+    date = models.DateField()
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=500)
+    startTime = models.TimeField(default=time(9, 0, 0))
+    endTime = models.TimeField(default=time(16, 0, 0))
+    event = models.ForeignKey(EventDetails, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title + " " + self.date
+
+
+# {
+#     year: 2023,
+#     day: 25,
+#     title: "Holiday 1",
+#     description: "This is a holiday",
+#     color: "green",
+#     start: "9:00",
+#     end: "4:00",
+# },
