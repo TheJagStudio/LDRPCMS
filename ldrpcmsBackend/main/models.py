@@ -4,7 +4,7 @@ from datetime import time
 
 
 class Department(models.Model):
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -12,7 +12,7 @@ class Department(models.Model):
 
 
 class Semester(models.Model):
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
 
@@ -21,7 +21,7 @@ class Semester(models.Model):
 
 
 class Division(models.Model):
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
@@ -31,7 +31,7 @@ class Division(models.Model):
 
 
 class Subject(models.Model):
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     division = models.ForeignKey(Division, on_delete=models.CASCADE)
@@ -45,11 +45,13 @@ class Faculty(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     phone = models.CharField(max_length=10)
+    gender = models.CharField(max_length=6, default="male")
     is_cc = models.BooleanField(default=False)
     CCDivison = models.ForeignKey(
         Division, on_delete=models.CASCADE, null=True, blank=True
     )
     CCbatch = models.DateField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
@@ -59,7 +61,9 @@ class LabAssistant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     phone = models.CharField(max_length=10)
+    gender = models.CharField(max_length=6, default="male")
     labName = models.CharField(max_length=10)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
@@ -68,7 +72,9 @@ class LabAssistant(models.Model):
 class HOD(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    gender = models.CharField(max_length=6, default="male")
     phone = models.CharField(max_length=10)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
@@ -81,8 +87,10 @@ class Student(models.Model):
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     division = models.ForeignKey(Division, on_delete=models.CASCADE)
     phone = models.CharField(max_length=10)
+    gender = models.CharField(max_length=6, default="male")
     batch = models.DateField()
     is_member = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
@@ -91,6 +99,7 @@ class Student(models.Model):
 class EventDetails(models.Model):
     eventType = models.CharField(max_length=50)
     eventColor = models.CharField(max_length=15)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.eventType
@@ -103,6 +112,7 @@ class CalendarDetails(models.Model):
     startTime = models.TimeField(default=time(9, 0, 0))
     endTime = models.TimeField(default=time(16, 0, 0))
     event = models.ForeignKey(EventDetails, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title + " " + self.date

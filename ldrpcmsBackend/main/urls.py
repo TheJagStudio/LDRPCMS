@@ -4,6 +4,9 @@ from . import views
 
 urlpatterns = [
     path("calendarDetails/", views.calendarDetails, name="calendarDetails"),
+    path('getUserDetails/', views.getUserDetails, name="getUserDetails"),
+    path('dataAdder/', views.dataAdder, name="dataAdder"),
+    path('avatarCreator/', views.avatarCreator, name="avatarCreator")
 ]
 
 

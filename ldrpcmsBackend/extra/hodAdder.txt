@@ -1,0 +1,16 @@
+hodArr = [["admin", "admin@ldrp.ac.in", "male"], ["Sandeep Modha", "hod_ce@ldrp.ac.in", "male"], ["Mehul Barot", "hod_it@ldrp.ac.in", "male"], ["Second Year Coordinator", "secondyear_ce@ldrp.ac.in", "male"]]
+for hod in hodArr:
+    newUser = User()
+    newUser.username = hod[0]
+    newUser.first_name = hod[0]
+    newUser.last_name = ""
+    newUser.email = hod[1]
+    newUser.set_password("Ldrp@123")
+    newUser.save()
+
+    newHOD = HOD()
+    newHOD.user = newUser
+    newHOD.phone = "1234567890"
+    newHOD.department = Department.objects.get(name="Computer Engineering")
+    newHOD.gender = hod[2]
+    newHOD.save()

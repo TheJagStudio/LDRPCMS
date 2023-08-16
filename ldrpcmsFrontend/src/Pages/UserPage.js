@@ -56,7 +56,7 @@ const UserPage = () => {
                             </button>
                         ))}
                     </div>
-                    <NavLink to="/users/adduser" className="bg-primary-500 text-white flex flex-nowrap items-center px-3 py-2 gap-2 rounded-full w-fit h-12 purpleBtnShadow hover:-translate-y-1 transition-all group">
+                    <NavLink to="/superadmin/users/adduser" className="bg-primary-500 text-white flex flex-nowrap items-center px-3 py-2 gap-2 rounded-full w-fit h-12 purpleBtnShadow hover:-translate-y-1 transition-all group">
                         <svg className="w-6 h-6 group-hover:rotate-180 transition-all" viewBox="0 0 24 24" fill="none">
                             <path fillRule="evenodd" clipRule="evenodd" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 6a1 1 0 0 1-1-1v-4H7a1 1 0 1 1 0-2h4V7a1 1 0 1 1 2 0v4h4a1 1 0 1 1 0 2h-4v4a1 1 0 0 1-1 1Z" fill="currentColor" />
                         </svg>

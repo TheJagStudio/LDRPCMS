@@ -1,0 +1,4 @@
+{
+    "editor.wordWrapColumn": 800000000,
+    "python.formatting.provider": "black"
+}
