@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 // Atoms
 import { useAtom } from "jotai";
-import { sideBarAtom } from "../../Variables";
-import { NavLink } from "react-router-dom";
+import { tempUserName, sideBarAtom } from "../../Variables";
+
 
 const StudentSidebar = () => {
     const [sideBar, setSideBar] = useAtom(sideBarAtom);
+    const [tempUser, setTempUser] = useAtom(tempUserName);
     const [currLocation, setCurrLocation] = useState("/" + window.location.pathname.split("/").pop());
     const sidebarLinks = [
         {
@@ -108,22 +110,27 @@ const StudentSidebar = () => {
             </div>
 
             {/* Profile Div */}
-            <div className="w-full flex flex-col items-center justify-center gap-5">
-                {/* Navigation */}
-                <div className="w-10 h-10 bg-white flex items-center justify-center rounded-full shadow-sm text-primary-600">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-primary-600">
-                        <path d="M12 6L12 18" stroke="currentColor" strokeLinecap="round" />
-                        <path d="M18 12L6 12" stroke="currentColor" strokeLinecap="round" />
-                    </svg>
-                </div>
-                {/* Person 1 */}
-                <div className="w-12 h-12 bg-white flex items-center justify-center rounded-full overflow-hidden shadow-sm text-primary-600">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" className="w-full h-full object-cover object-center" alt="" />
-                </div>
-                {/* Person 2 */}
-                <div className="w-12 h-12 bg-white flex items-center justify-center rounded-full overflow-hidden shadow-sm text-primary-600">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" className="w-full h-full object-cover object-center" alt="" />
-                </div>
+            <div className="w-full flex flex-col items-center justify-center gap-5 px-6">
+                <NavLink to="/">
+                    <div className={"bg-white shadow-sm flex items-center h-10 transition-all duration-500 cursor-pointer " + (sideBar ? "w-full px-3 rounded-lg" : "w-10 rounded-[20px]")}>
+                        <div className={"bg-white flex items-center justify-center rounded-full overflow-hidden text-primary-600 transition-all duration-500 " + (sideBar ? "!w-7 !h-7" : "!w-10 !h-10")}>
+                            <img src={process.env.REACT_APP_SERVER + "/api/main/avatarCreator?gender=" + tempUser.gender + "&name=" + tempUser.name} alt="" className=" w-full h-full aspect-square object-cover object-center rounded" id="profileImg" />
+                        </div>
+                        <div className={"flex items-center overflow-hidden transition-all duration-500 " + (sideBar ? "lg:w-20 w-auto ml-2 gap-1" : "w-0 ml-0 gap-0")}>
+                            <svg viewBox="0 0 24 24" fill="none" className="!w-4 !h-4 text-primary-600">
+                                <g clipPath="url(#a)">
+                                    <path d="M5 22a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v3h-2V4H6v16h12v-2h2v3a1 1 0 0 1-1 1H5Zm13-6v-3h-7v-2h7V8l5 4-5 4Z" fill="currentColor" />
+                                </g>
+                                <defs>
+                                    <clipPath id="a">
+                                        <path fill="#fff" d="M0 0h24v24H0z" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <p className="text-primary-600 transition-all duration-500">Logout</p>
+                        </div>
+                    </div>
+                </NavLink>
             </div>
         </div>
     );

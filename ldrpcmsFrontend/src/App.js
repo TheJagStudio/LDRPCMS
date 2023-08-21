@@ -7,12 +7,20 @@ import HomePage from "./Pages/SuperAdmin/HomePage";
 import CalendarPage from "./Pages/CalendarPage";
 import UserPage from "./Pages/SuperAdmin/UserPage";
 import CreateUser from "./Pages/SuperAdmin/CreateUser";
+import EditUser from "./Pages/SuperAdmin/EditUser";
 import PMS from "./Pages/PMS";
 
 // Admin
 import Admin from "./Pages/Admin/Admin";
 import AdminHomePage from "./Pages/Admin/AdminHomePage";
 import AdminUsers from "./Pages/Admin/AdminUsers";
+import AdminEditUser from "./Pages/Admin/AdminEditUser";
+
+// PMS
+import PMSLayout from "./Pages/PMS/PMSLayout";
+import PMSDashboard from "./Pages/PMS/PMSDashboard";
+import PMSGroups from "./Pages/PMS/PMSGroups";
+import PMSGroupDetails from "./Pages/PMS/PMSGroupDetails";
 
 // Attendance
 import Attendance from "./Pages/Attendance/Attendance";
@@ -45,6 +53,7 @@ function App() {
                     <Route path="/superadmin/calendar" element={<CalendarPage />} />
                     <Route path="/superadmin/users" element={<UserPage />} />
                     <Route path="/superadmin/users/adduser" element={<CreateUser />} />
+                    <Route path="/superadmin/users/edituser/:id" element={<EditUser />} />
                     <Route path="/superadmin/space" element={<SpacePage />} />
                 </Route>
                 {/* Admin */}
@@ -53,8 +62,15 @@ function App() {
                     <Route path="/admin/calendar" element={<CalendarPage />} />
                     <Route path="/admin/users" element={<AdminUsers />} />
                     <Route path="/admin/users/adduser" element={<CreateUser />} />
+                    <Route path="/admin/users/edituser/:id" element={<AdminEditUser />} />
                     <Route path="/admin/space" element={<SpacePage />} />
                     <Route path="/admin/pms" element={<PMS />} />
+                </Route>
+                {/* PMS */}
+                <Route element={<PMSLayout />}>
+                    <Route path="/pms/" element={<PMSDashboard />} />
+                    <Route path="/pms/groups" element={<PMSGroups />} />
+                    <Route path="/pms/group-details/:groupID" element={<PMSGroupDetails />} />
                 </Route>
                 {/* Student */}
                 <Route element={<Student />}>
@@ -66,7 +82,7 @@ function App() {
                     <Route path="/student/calendar" element={<CalendarPage />} />
                     <Route path="/student/pms" element={<PMS />} />
                 </Route>
-                {/* Student */}
+                {/* Attendance */}
                 <Route element={<Attendance />}>
                     <Route path="/attendance/" element={<AttendanceHome />} />
                     <Route path="/attendance/report" element={<AttendanceReport />} />

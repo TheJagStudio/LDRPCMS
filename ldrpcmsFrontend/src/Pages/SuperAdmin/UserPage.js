@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Grid, _ } from "gridjs-react";
 import { RowSelection } from "gridjs/plugins/selection";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 // Components
 import UserviewModal from "../../Components/Common/UserviewModal";
@@ -10,9 +10,11 @@ import UserdeleteModal from "../../Components/Common/UserdeleteModal";
 const Actions = ({ userData, setUserToDelete, setUserToView }) => {
     return (
         <div className="flex items-center gap-3 w-fit mx-auto">
-            <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-primary-500 cursor-pointer transition-all duration-200 hover:text-yellow-500">
-                <path fillRule="evenodd" clipRule="evenodd" d="M17.204 10.796 19 9c.545-.545.818-.818.963-1.112a2 2 0 0 0 0-1.776C19.818 5.818 19.545 5.545 19 5c-.546-.545-.818-.818-1.112-.964a2 2 0 0 0-1.776 0c-.294.146-.567.419-1.112.964l-1.82 1.819a10.9 10.9 0 0 0 4.023 3.977Zm-5.477-2.523-6.87 6.87c-.426.426-.638.638-.778.9-.14.26-.199.555-.317 1.145l-.615 3.077c-.067.332-.1.498-.005.593.094.095.26.061.593-.005l3.077-.616c.59-.117.884-.176 1.145-.316.262-.14.474-.352.9-.777l6.889-6.89a12.901 12.901 0 0 1-4.02-3.98Z" fill="currentColor" />
-            </svg>
+            <a href={"/superadmin/users/edituser/" + userData.id}>
+                <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-primary-500 cursor-pointer transition-all duration-200 hover:text-yellow-500">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M17.204 10.796 19 9c.545-.545.818-.818.963-1.112a2 2 0 0 0 0-1.776C19.818 5.818 19.545 5.545 19 5c-.546-.545-.818-.818-1.112-.964a2 2 0 0 0-1.776 0c-.294.146-.567.419-1.112.964l-1.82 1.819a10.9 10.9 0 0 0 4.023 3.977Zm-5.477-2.523-6.87 6.87c-.426.426-.638.638-.778.9-.14.26-.199.555-.317 1.145l-.615 3.077c-.067.332-.1.498-.005.593.094.095.26.061.593-.005l3.077-.616c.59-.117.884-.176 1.145-.316.262-.14.474-.352.9-.777l6.889-6.89a12.901 12.901 0 0 1-4.02-3.98Z" fill="currentColor" />
+                </svg>
+            </a>
             <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -22,6 +24,7 @@ const Actions = ({ userData, setUserToDelete, setUserToView }) => {
                     document.getElementById("userViewModal").classList.toggle("opacity-0");
                     document.getElementsByTagName("BODY")[0].style.overflow = "hidden";
                     setUserToView(userData);
+                    console.log(userData);
                 }}
             >
                 <circle cx={12} cy={12} r={3} stroke="currentColor" strokeWidth={2} />

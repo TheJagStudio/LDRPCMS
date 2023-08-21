@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 // Atoms
 import { useAtom } from "jotai";
 import { tempUserName, sideBarAtom } from "../../Variables";
-import { NavLink } from "react-router-dom";
+
 
 const AdminSidebar = () => {
     const [sideBar, setSideBar] = useAtom(sideBarAtom);
@@ -20,7 +21,7 @@ const AdminSidebar = () => {
                 </svg>
             ),
             name: "Home",
-            location: "/admin",
+            location: "/superadmin",
         },
         {
             svg: (
@@ -84,18 +85,10 @@ const AdminSidebar = () => {
 
             {/* Profile Div */}
             <div className="w-full flex flex-col items-center justify-center gap-5 px-6">
-                {/* Navigation */}
-                {/* <div className="w-10 h-10 bg-white flex items-center justify-center rounded-full shadow-sm text-primary-600">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-primary-600">
-                        <path d="M12 6L12 18" stroke="currentColor" strokeLinecap="round" />
-                        <path d="M18 12L6 12" stroke="currentColor" strokeLinecap="round" />
-                    </svg>
-                </div> */}
-                {/* Person 1 */}
                 <NavLink to="/">
                     <div className={"bg-white shadow-sm flex items-center h-10 transition-all duration-500 cursor-pointer " + (sideBar ? "w-full px-3 rounded-lg" : "w-10 rounded-[20px]")}>
                         <div className={"bg-white flex items-center justify-center rounded-full overflow-hidden text-primary-600 transition-all duration-500 " + (sideBar ? "!w-7 !h-7" : "!w-10 !h-10")}>
-                            <img src={"https://api.dicebear.com/6.x/micah/svg?seed=" + tempUser + "&baseColor=f9c9b6&eyes=eyes,eyesShadow,round&facialHairColor=000000,transparent&facialHairProbability=20&hair=fonze,mrT,mrClean,turban&mouth=laughing,smile,smirk"} alt="" />
+                            <img src={process.env.REACT_APP_SERVER + "/api/main/avatarCreator?gender=" + tempUser.gender + "&name=" + tempUser.name} alt="" className=" w-full h-full aspect-square object-cover object-center rounded" id="profileImg" />
                         </div>
                         <div className={"flex items-center overflow-hidden transition-all duration-500 " + (sideBar ? "lg:w-20 w-auto ml-2 gap-1" : "w-0 ml-0 gap-0")}>
                             <svg viewBox="0 0 24 24" fill="none" className="!w-4 !h-4 text-primary-600">
@@ -112,10 +105,6 @@ const AdminSidebar = () => {
                         </div>
                     </div>
                 </NavLink>
-                {/* Person 2 */}
-                {/* <div className="w-12 h-12 bg-white flex items-center justify-center rounded-full overflow-hidden shadow-sm text-primary-600">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" className="w-full h-full object-cover object-center" alt="" />
-                </div> */}
             </div>
         </div>
     );

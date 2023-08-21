@@ -5,7 +5,7 @@ import { useAtom } from "jotai";
 import { tempUserName, sideBarAtom } from "../../Variables";
 import { NavLink } from "react-router-dom";
 
-const AdminSidebar = () => {
+const PMSSidebar = () => {
     const [sideBar, setSideBar] = useAtom(sideBarAtom);
     const [tempUser, setTempUser] = useAtom(tempUserName);
     const [currLocation, setCurrLocation] = useState("/" + window.location.pathname.split("/").pop());
@@ -20,7 +20,7 @@ const AdminSidebar = () => {
                 </svg>
             ),
             name: "Home",
-            location: "/admin",
+            location: "/pms",
         },
         {
             svg: (
@@ -36,7 +36,7 @@ const AdminSidebar = () => {
                 </svg>
             ),
             name: "Calendar",
-            location: "/admin/calendar",
+            location: "/pms/calendar",
         },
         {
             svg: (
@@ -47,8 +47,8 @@ const AdminSidebar = () => {
                     <path d="M12 14c3.572 0 4.592 2.551 4.883 4.009.109.541-.33.991-.883.991H8c-.552 0-.992-.45-.883-.991C7.408 16.55 8.428 14 12 14Z" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
                 </svg>
             ),
-            name: "Users",
-            location: "/admin/users",
+            name: "Groups",
+            location: "/pms/groups",
         },
         {
             svg: (
@@ -59,7 +59,7 @@ const AdminSidebar = () => {
                 </svg>
             ),
             name: "Space",
-            location: "/admin/space",
+            location: "/pms/space",
         },
         {
             svg: (
@@ -69,7 +69,7 @@ const AdminSidebar = () => {
                 </svg>
             ),
             name: "PMS",
-            location: "/admin/pms",
+            location: "/pms/pms",
         },
     ];
 
@@ -119,4 +119,4 @@ const AdminSidebar = () => {
     );
 };
 
-export default AdminSidebar;
+export default PMSSidebar;

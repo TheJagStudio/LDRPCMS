@@ -27,7 +27,7 @@ const CreateUser = () => {
                 <div className="flex flex-col w-full md:w-1/3 h-full p-8 md:border-r md:border-borderColor">
                     <h1 className="text-textColor-600 font-bold text-lg mb-5">Account Image</h1>
                     <div className={" w-full h-auto aspect-square bg-textColor-100 rounded-lg flex flex-col items-center justify-center p-6 relative mb-3"}>
-                        <img src={"https://api.dicebear.com/6.x/micah/svg?seed=" + username + "&baseColor=f9c9b6&eyes=eyes,eyesShadow,round&facialHairColor=000000,transparent&facialHairProbability=20&hair=" + (gender === "female" ? "dannyPhantom,full,pixie" : "fonze,mrT,mrClean,turban") + "&mouth=laughing,smile,smirk"} alt="" className=" w-full h-full aspect-square object-cover object-center rounded" id="profileImg" />
+                        <img src={process.env.REACT_APP_SERVER + "/api/main/avatarCreator?gender=" + username + "&name=" + gender} alt="" className=" w-full h-full aspect-square object-cover object-center rounded" id="profileImg" />
                     </div>
                 </div>
                 <div className="flex flex-col w-full md:w-2/3 p-8 pb-10">

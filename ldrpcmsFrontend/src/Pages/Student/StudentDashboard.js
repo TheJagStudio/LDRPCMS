@@ -6,6 +6,7 @@ const StudentDashboard = () => {
         mentorEmail: "ashish_ce@ldrp.ac.in",
         projectTitle: "Procom (Product Compare)",
         projectDesc: "PROCOM is an innovative website designed to provide users with a comprehensive platform for comparing products across various categories, including electronics, sports, apps, and more.",
+        groupID:"G19",
         groupSize: 4,
         groupLeaderName: "Jagrat Patel",
         groupLeaderEmail: "Jagratpatel99@gmail.com",
@@ -60,8 +61,8 @@ const StudentDashboard = () => {
                             {/* Group Size */}
                             <div className="bg-white rounded-lg p-4 px-5 shadowCustom w-full h-full flex flex-col gap-6">
                                 <div>
-                                    <p className="text-textColor-400 text-lg font-medium mb-1.5">Group Size</p>
-                                    <h1 className="text-3xl font-semibold text-textColor-700">{projectDetails.groupSize}</h1>
+                                    <p className="text-textColor-400 text-lg font-medium mb-1.5">Group ID</p>
+                                    <h1 className="text-3xl font-semibold text-textColor-700">{projectDetails.groupID}</h1>
                                 </div>
                                 <div>
                                     <p className="font-semibold text-textColor-400">
