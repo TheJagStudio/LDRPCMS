@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 * {
-    font-family: "Roboto", sans-serif;
+    font-family: "Poppins", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -54,6 +54,7 @@ body {
     --textColor-900: #333947;
     --textColor-950: #22252f;
     --borderColor: #e0e2e5;
+    /* --swiper-theme-color: #8833ff; */
 }
 
 /******************************** Grid Js Styling ********************************/
@@ -634,4 +635,76 @@ button[data-draftail-balloon] {
 
 .DraftEditor-root span {
     border-radius: 6px;
+}
+
+/* Swiper Pagination */
+.landingPageSwiper .swiper-pagination-bullet {
+    border-radius: 5px !important;
+    width: 50px !important;
+    height: 6px !important;
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+.landingPageSwiper .swiper-pagination-bullet-active {
+    background-color: white !important;
+}
+
+/******************************** Flatpickr Styling ********************************/
+
+.flatpickr-calendar::after {
+    border-bottom-color: var(--primary-600) !important;
+}
+
+.flatpickr-month {
+    background-color: var(--primary-600) !important;
+}
+
+.flatpickr-monthDropdown-months {
+    background-color: var(--primary-600) !important;
+}
+
+.flatpickr-monthDropdown-month {
+    background-color: white !important;
+    color: var(--textColor-500) !important;
+    font-size: 12px !important;
+}
+
+.flatpickr-current-month {
+    padding: 4px !important;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover svg,
+.flatpickr-months .flatpickr-next-month:hover svg {
+    fill: white !important;
+    stroke-width: 2px !important;
+}
+
+.flatpickr-weekdays {
+    background-color: var(--textColor-100) !important;
+}
+
+.flatpickr-weekday {
+    background-color: var(--textColor-100) !important;
+}
+
+.flatpickr-day.selected {
+    background-color: var(--primary-600) !important;
+    border-color: var(--primary-600) !important;
+}
+
+.flatpickr-day.startRange {
+    background-color: var(--primary-600) !important;
+    border-color: var(--primary-600) !important;
+}
+
+.flatpickr-day.endRange {
+    background-color: var(--primary-600) !important;
+    border-color: var(--primary-600) !important;
+}
+
+.flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
+.flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
+.flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
+    -webkit-box-shadow: -10px 0 0 var(--primary-300) !important;
+    box-shadow: -10px 0 0 var(--primary-300) !important;
 }

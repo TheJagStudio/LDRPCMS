@@ -17,6 +17,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
+TERMINAL_SECURE = False
+TERMINAL_DEBUG_ONLY = False
+TERMINAL_WHITELIST = [
+    "127.0.0.1"
+]
 
 
 # Application definition
@@ -35,6 +40,7 @@ INSTALLED_APPS = [
     "labComplain",
     "pms",
     "corsheaders",
+    "adminTerminal",
 ]
 
 MIDDLEWARE = [

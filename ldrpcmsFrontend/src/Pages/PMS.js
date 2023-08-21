@@ -28,6 +28,21 @@ const PMS = () => {
     const [searchStudentName, setSearchStudentName] = useState("");
     const [searchMentorName, setSearchMentorName] = useState("");
     const [taskProgress, setTaskProgress] = useState({ mentor: "inProgress", team1: "inProgress", team2: "inProgress", team3: "inProgress", team4: "inProgress", name: "inProgress", description: "inProgress", stack: "inProgress", todo: "inProgress" });
+
+    const changeTaskProgress = () => {
+        if (document.querySelector('[data-text="true"]').innerText.length >= 10 && taskProgress["description"] === "inProgress") {
+            let tempProgress = taskProgress;
+            tempProgress["description"] = "completed";
+            setTaskProgress(tempProgress);
+            console.log(taskProgress);
+        } else if (document.querySelector('[data-text="true"]').innerText.length < 10 && taskProgress["description"] === "completed") {
+            let tempProgress = taskProgress;
+            tempProgress["description"] = "inProgress";
+            setTaskProgress(tempProgress);
+            console.log(taskProgress);
+        }
+    };
+
     return (
         <div className="flex flex-col w-full h-full">
             <div className="w-full my-6">
@@ -211,7 +226,6 @@ const PMS = () => {
                         </div>
                     )}
                 </div>
-                {/* <div className="w-full grid grid-cols-2 gap-4"> */}
                 {/* Project Name */}
                 <div className="w-full my-5 border borderColor rounded-lg overflow-hidden">
                     <input
@@ -235,27 +249,11 @@ const PMS = () => {
                         required
                     />
                 </div>
-                {/* <div className="w-full my-5 border borderColor rounded-lg overflow-hidden">
-                        <select className="bg-transparent w-full outline-none py-2 px-3 text-textColor-500">
-                            <option selected disabled>
-                                -- Select Mentor --
-                            </option>
-                            <option value="Ashishkumar Patel">Ashishkumar Patel</option>
-                        </select>
-                    </div> */}
-                {/* </div> */}
                 <DraftailEditor
                     onFocus={() => {
-                        if (document.querySelector('[data-contents="true"]')) {
-                            document.querySelector('[data-contents="true"]').addEventListener("keydown", (event) => {
-                                if (document.querySelector('[data-contents="true"]').innerText > 50 && taskProgress["description"] === "inProgress") {
-                                    let tempProgress = taskProgress;
-                                    tempProgress["description"] = "inProgress";
-                                    setTaskProgress(tempProgress);
-                                }
-                                console.log(document.querySelector('[data-contents="true"]').innerText);
-                            });
-                        }
+                        // if (document.querySelector('[data-text="true"]')) {
+                        document.querySelector('[data-text="true"]').setAttribute("onkeydown", changeTaskProgress());
+                        // }
                     }}
                     className="w-full"
                     blockTypes={[{ type: BLOCK_TYPE.UNSTYLED }, { type: BLOCK_TYPE.HEADER_ONE }, { type: BLOCK_TYPE.HEADER_TWO }, { type: BLOCK_TYPE.HEADER_THREE }, { type: BLOCK_TYPE.HEADER_FOUR }, { type: BLOCK_TYPE.HEADER_FIVE }, { type: BLOCK_TYPE.HEADER_SIX }, { type: BLOCK_TYPE.UNORDERED_LIST_ITEM }, { type: BLOCK_TYPE.ORDERED_LIST_ITEM }, { type: BLOCK_TYPE.BLOCKQUOTE }, { type: BLOCK_TYPE.CODE }]}

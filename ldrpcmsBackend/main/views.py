@@ -216,7 +216,7 @@ def avatarCreator(request):
     if seed % 3 == 0:
         svg += '<g transform="translate(102 111)">' + avatarData["glasses"][seed % len(avatarData["glasses"])].replace("%%color%%", avaColor[seed % (len(avaColor))]) + '</g>'
     svg += '<g transform="rotate(-8 1149.44 -1186.92)">' + avatarData["noses"][seed % len(avatarData["noses"])] + '</g>'
-    svg += '<g transform="translate(84 154)">' + avatarData["ears"][seed % len(avatarData["ears"])].replace("%%color%%", skinColor[(seed + 3) % (len(skinColor))]) + '</g>'
+    svg += '<g transform="translate(84 154)">' + avatarData["ears"][seed % len(avatarData["ears"])].replace("%%color%%", skinColor[seed % (len(skinColor))]) + '</g>'
     if gender == "female" and seed % 3 == 0:
         svg += '<g transform="translate(87 190)">' + avatarData["earrings"][seed % len(avatarData["earrings"])].replace("%%color%%", avaColor[(seed + 2) % (len(avaColor))]) + '</g>'
     svg += '<g transform="translate(53 272)">' + avatarData["clothes"][seed % len(avatarData["clothes"])].replace("%%color%%", avaColor[(seed + 1) % (len(avaColor))]) + '</g>'

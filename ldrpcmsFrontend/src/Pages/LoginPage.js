@@ -3,14 +3,19 @@ import React from "react";
 const LoginPage = () => {
     return (
         <section className="flex items-center justify-center w-screen min-h-screen h-full relative">
-            <a href="/" className="absolute top-7 left-[50%] flex items-center justify-center gap-3 translate-x-[-50%] lg:translate-x-0 lg:left-8">
-                <img src="/images/LDRP.png" alt="Logo" className="w-16 h-16" />
-                <p className="text-3xl font-bold text-textColor-600">LDRP ITR</p>
-            </a>
-
             {/* Left Side Image */}
-            <div className="hidden lg:flex items-center justify-center h-full min-h-screen xl:w-2/3 w-[60%]  bg-primary-50/50">
-                <img src="/images/login.svg" class="w-[60%] -scale-x-100" alt="login" />
+            <div className="hidden lg:flex items-center justify-center h-full min-h-screen xl:w-2/3 w-[60%]  bg-primary-50/50 relative">
+                <div className="absolute top-0 left-0 w-full flex items-center justify-between p-4 px-6">
+                    <a href="/" className=" flex items-center justify-center gap-3 translate-x-[-50%] lg:translate-x-0 lg:left-8">
+                        <img src="/static/images/LDRP.png" alt="Logo" className="w-16 h-16" />
+                        <p className="text-3xl font-bold text-textColor-600">LDRP ITR</p>
+                    </a>
+                    <a href="/" className="flex items-center justify-center gap-3 translate-x-[-50%] lg:translate-x-0 lg:left-8">
+                        <p className="text-3xl font-bold text-textColor-600">KSV</p>
+                        <img src="/static/images/ksv.png" alt="Logo" className="w-16 h-16" />
+                    </a>
+                </div>
+                <img src="/static/svg/login.svg" class="w-[60%] -scale-x-100" alt="login" />
             </div>
             {/* Form Div */}
             <div className="flex flex-col gap-10 items-center justify-center w-full lg:w-[40%] xl:max-w-full xl:w-1/3 h-full min-h-screen bg-white">
