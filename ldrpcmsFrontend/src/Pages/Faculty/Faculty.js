@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 
@@ -8,9 +8,9 @@ import { sideBarAtom, lastMessageAtom } from "../../Variables";
 
 // Components
 import Navbar from "../../Components/Common/Navbar";
-import Sidebar from "../../Components/SuperAdmin/Sidebar";
+import FacultySidebar from "../../Components/Faculty/FacultySidebar";
 
-const SuperAdmin = () => {
+const Faculty = () => {
     const [sideBar, setSideBar] = useAtom(sideBarAtom);
     const [lastMessageMain, setLastMessageMain] = useAtom(lastMessageAtom);
     const [socketUrl, setSocketUrl] = useState("wss://thejagstudio-ntfy.hf.space/AllLdrp/ws");
@@ -56,7 +56,7 @@ const SuperAdmin = () => {
                 {tempMsg}
             </div>
             <div className="w-full h-full min-h-[calc(100vh-6rem)] flex flex-nowrap mt-24">
-                <Sidebar />
+                <FacultySidebar />
                 <div className={"transition-all duration-500 " + (sideBar ? "lg:w-[calc(100%-12rem)] lg:ml-48" : "w-full lg:w-[calc(100%-6rem)] lg:ml-24")}>
                     <Outlet />
                 </div>
@@ -65,4 +65,4 @@ const SuperAdmin = () => {
     );
 };
 
-export default SuperAdmin;
+export default Faculty;

@@ -1,0 +1,17 @@
+asstArr = [["Hardik Patel", "hardik_ce@ldrp.ac.in", "male"], ["Bhavik Patel", "bhavik_ce@ldrp.ac.in", "male"], ["Nilam Patel", "nilam_ce@ldrp.ac.in", "female"], ["Ravi Patel", "ravi_ce@ldrp.ac.in", "male"], ["Jay Patel", "hardik_ce@ldrp.ac.in", "male"]]
+for asst in asstArr:
+    newUser = User()
+    newUser.username = asst[0]
+    newUser.first_name = asst[0]
+    newUser.last_name = ""
+    newUser.email = asst[1]
+    newUser.set_password("Ldrp@123")
+    newUser.save()
+
+    newAsst = LabAssistant()
+    newAsst.user = newUser
+    newAsst.phone = "1234567890"
+    newAsst.department = Department.objects.get(name="Computer Engineering")
+    newAsst.gender = asst[2]
+    newAsst.labName = "lab C1"
+    newAsst.save()

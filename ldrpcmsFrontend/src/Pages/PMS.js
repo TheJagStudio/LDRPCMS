@@ -74,7 +74,8 @@ const PMS = () => {
                             >
                                 {currentMentor !== null ? (
                                     <div className="w-full h-full flex items-center justify-center gap-2 cursor-pointer">
-                                        <img src={"https://api.dicebear.com/6.x/micah/svg?seed=" + mentorList[currentMentor].name + "&baseColor=f9c9b6&eyes=eyes,eyesShadow,round&earrings[]&facialHair[]&facialHairProbability=0&hair=" + (mentorList[currentMentor].gender === "female" ? "dannyPhantom,full,pixie" : "fonze,mrT,mrClean,turban") + "&mouth=laughing,smile,smirk"} className="rounded-full border bg-primary-100 border-primary-800 w-6 h-6" />
+                                        <img src={process.env.REACT_APP_SERVER + "/api/main/avatarCreator?gender=" + mentorList[currentMentor].gender + "&name=" + mentorList[currentMentor].name} className="rounded-full border bg-primary-100 border-primary-800 w-6 h-6" />
+                                        {/* <img src={"https://api.dicebear.com/6.x/micah/svg?seed=" + mentorList[currentMentor].name + "&baseColor=f9c9b6&eyes=eyes,eyesShadow,round&earrings[]&facialHair[]&facialHairProbability=0&hair=" + (mentorList[currentMentor].gender === "female" ? "dannyPhantom,full,pixie" : "fonze,mrT,mrClean,turban") + "&mouth=laughing,smile,smirk"} className="rounded-full border bg-primary-100 border-primary-800 w-6 h-6" /> */}
                                         <p className="text-textColor-500 font-medium text-sm">{mentorList[currentMentor].name}</p>
                                     </div>
                                 ) : (
@@ -112,7 +113,7 @@ const PMS = () => {
                                                         setSearchMentorName("");
                                                     }}
                                                 >
-                                                    <img src={"https://api.dicebear.com/6.x/micah/svg?seed=" + item.name + "&baseColor=f9c9b6&eyes=eyes,eyesShadow,round&earrings[]&facialHair[]&facialHairProbability=0&hair=" + (item.gender === "female" ? "dannyPhantom,full,pixie" : "fonze,mrT,mrClean,turban") + "&mouth=laughing,smile,smirk"} alt="" className="rounded-full border bg-primary-100 border-primary-800 w-6 h-6" />
+                                                    <img src={process.env.REACT_APP_SERVER + "/api/main/avatarCreator?gender=" + item.gender + "&name=" + item.name} className="rounded-full border bg-primary-100 border-primary-800 w-6 h-6" />
                                                     <span className="text-textColor-400 font-medium">{item.name}</span>
                                                 </div>
                                             );
@@ -124,7 +125,7 @@ const PMS = () => {
                         {members.map((item, index) => (
                             <div className="flex items-center justify-between gap-4 max-w-[300px] w-fit h-fit border border-borderColor rounded-full p-2 hover:bg-textColor-50 shadowCustom cursor-pointer" key={index}>
                                 <div className="flex items-center gap-2 max-w-[85%]">
-                                    <img src={"https://api.dicebear.com/6.x/micah/svg?seed=" + item.name + "&baseColor=f9c9b6&eyes=eyes,eyesShadow,round&earrings[]&facialHair[]&facialHairProbability=0&hair=" + (item.gender === "female" ? "dannyPhantom,full,pixie" : "fonze,mrT,mrClean,turban") + "&mouth=laughing,smile,smirk"} alt="avatar" className="rounded-full border bg-primary-100 border-primary-800 w-6 h-6" />
+                                    <img src={process.env.REACT_APP_SERVER + "/api/main/avatarCreator?gender=" + item.gender + "&name=" + item.name} className="rounded-full border bg-primary-100 border-primary-800 w-6 h-6" />
                                     <p className="text-textColor-500 text-sm font-semibold truncate">{item}</p>
                                 </div>
                                 <div
@@ -208,7 +209,7 @@ const PMS = () => {
                                                     className="userListRow group/user w-full hover:bg-textColor-50 px-3 py-2 flex items-center justify-between"
                                                 >
                                                     <div className="flex items-center gap-2 max-w-[85%]">
-                                                        <img src={"https://api.dicebear.com/6.x/micah/svg?seed=" + item.name + "&baseColor=f9c9b6&eyes=eyes,eyesShadow,round&facialHair[]&hair=" + (item.gender === "female" ? "dannyPhantom,full,pixie" : "fonze,mrT,mrClean,turban") + "&mouth=laughing,smile,smirk"} alt="avatar" className="rounded-full border bg-primary-100 border-primary-800 w-6 h-6" />
+                                                        <img src={process.env.REACT_APP_SERVER + "/api/main/avatarCreator?gender=" + item.gender + "&name=" + item.name} className="rounded-full border bg-primary-100 border-primary-800 w-6 h-6" />
                                                         <p className="text-textColor-500 text-sm font-semibold truncate">{item.name}</p>
                                                     </div>
                                                     <div className="flex items-center gap-1 text-textColor-500 cursor-pointer">

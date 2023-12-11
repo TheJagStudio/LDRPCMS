@@ -2,6 +2,7 @@
 	"name": "ldrpcms",
 	"version": "0.1.0",
 	"private": true,
+	"proxy": "http://127.0.0.1:8000",
 	"dependencies": {
 		"chart.js": "^4.3.3",
 		"draft-js": "^0.10.5",
@@ -18,6 +19,7 @@
 		"react-flatpickr": "^3.10.13",
 		"react-router-dom": "^6.14.2",
 		"react-scripts": "5.0.1",
+		"react-use-websocket": "^3.0.0",
 		"swiper": "^10.1.0"
 	},
 	"scripts": {

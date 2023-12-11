@@ -60,24 +60,6 @@ export const dataLine = {
 const DashboardOverview = () => {
     const departmentData = [
         {
-            deptName: "Computer Engineering",
-            deptData: [
-                { semName: "Sem 8", semData: [20, 55, 48, 51] },
-                { semName: "Sem 6", semData: [86, 45, 41, 23] },
-                { semName: "Sem 4", semData: [7, 84, 2] },
-                { semName: "Sem 2", semData: [89, 12, 25, 99, 200] },
-            ],
-        },
-        {
-            deptName: "IT Engineering",
-            deptData: [
-                { semName: "Sem 8", semData: [45, 0, 23, 12] },
-                { semName: "Sem 6", semData: [25, 2, 35, 69] },
-                { semName: "Sem 4", semData: [42, 7, 59] },
-                { semName: "Sem 2", semData: [44, 99, 200] },
-            ],
-        },
-        {
             deptName: "Mechanical Engineering",
             deptData: [
                 { semName: "Sem 8", semData: [200, 152, 8] },

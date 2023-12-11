@@ -2,13 +2,13 @@ import React, { useState } from "react";
 
 // Atoms
 import { useAtom } from "jotai";
-import { tempUserName, sideBarAtom } from "../../Variables";
+import { sideBarAtom, userInfo } from "../../Variables";
 import { NavLink } from "react-router-dom";
 
 const AttendanceSidebar = () => {
     const [sideBar, setSideBar] = useAtom(sideBarAtom);
-    const [tempUser, setTempUser] = useAtom(tempUserName);
     const [currLocation, setCurrLocation] = useState("/" + window.location.pathname.split("/").pop());
+    const [userInfoAtom, setUserInfoAtom] = useAtom(userInfo);
     const sidebarLinks = [
         {
             svg: (
@@ -48,17 +48,7 @@ const AttendanceSidebar = () => {
                 </svg>
             ),
             name: "Users",
-            location: "/attendance",
-        },
-        {
-            svg: (
-                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                    <path d="M3 7c0-1.886 0-2.828.586-3.414C4.172 3 5.114 3 7 3h10c1.886 0 2.828 0 3.414.586C21 4.172 21 5.114 21 7v10c0 1.886 0 2.828-.586 3.414C19.828 21 18.886 21 17 21H7c-1.886 0-2.828 0-3.414-.586C3 19.828 3 18.886 3 17V7Z" stroke="currentColor" strokeWidth={2} />
-                    <path fillRule="evenodd" clipRule="evenodd" d="M18 10h-5.343c-.818 0-1.226 0-1.594-.152-.368-.152-.657-.442-1.235-1.02l-.656-.656c-.578-.578-.868-.868-1.235-1.02C7.569 7 7.16 7 6.343 7H3v10c0 1.886 0 2.828.586 3.414C4.172 21 5.114 21 7 21h10c1.886 0 2.828 0 3.414-.586C21 19.828 21 18.886 21 17V7c0 .932 0 1.398-.152 1.765a2 2 0 0 1-1.083 1.083C19.398 10 18.932 10 18 10ZM7 15a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H7Z" fill="currentColor" />
-                </svg>
-            ),
-            name: "PMS",
-            location: "/attendance",
+            location: "/attendance/user",
         },
         {
             svg: (
@@ -69,7 +59,7 @@ const AttendanceSidebar = () => {
                 </svg>
             ),
             name: "Space",
-            location: "/attendance",
+            location: "/attendance/space",
         },
     ];
 
@@ -102,10 +92,29 @@ const AttendanceSidebar = () => {
                     </svg>
                 </div> */}
                 {/* Person 1 */}
-                <NavLink to="/">
+                <button
+                    onClick={() => {
+                        fetch("/api/main/logout/", {
+                            method: "POST",
+                            credentials: "include",
+                        })
+                            .then((res) => res.json())
+                            .then((res) => {
+                                if (res.success) {
+                                    window.location.href = "/";
+                                } else {
+                                    alert("Error logging out");
+                                }
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                                window.location.href = "/";
+                            });
+                    }}
+                >
                     <div className={"bg-white shadow-sm flex items-center h-10 transition-all duration-500 cursor-pointer " + (sideBar ? "w-full px-3 rounded-lg" : "w-10 rounded-[20px]")}>
                         <div className={"bg-white flex items-center justify-center rounded-full overflow-hidden text-primary-600 transition-all duration-500 " + (sideBar ? "!w-7 !h-7" : "!w-10 !h-10")}>
-                            <img src={"https://api.dicebear.com/6.x/micah/svg?seed=" + tempUser + "&baseColor=f9c9b6&eyes=eyes,eyesShadow,round&facialHairColor=000000,transparent&facialHairProbability=20&hair=fonze,mrT,mrClean,turban&mouth=laughing,smile,smirk"} alt="" />
+                            <img src={"/api/main/avatarCreator?gender=" + userInfoAtom.gender + "&name=" + (userInfoAtom.first_name + userInfoAtom.last_name)} alt="avatar" />
                         </div>
                         <div className={"flex items-center overflow-hidden transition-all duration-500 " + (sideBar ? "lg:w-20 w-auto ml-2 gap-1" : "w-0 ml-0 gap-0")}>
                             <svg viewBox="0 0 24 24" fill="none" className="!w-4 !h-4 text-primary-600">
@@ -121,7 +130,7 @@ const AttendanceSidebar = () => {
                             <p className="text-primary-600 transition-all duration-500">Logout</p>
                         </div>
                     </div>
-                </NavLink>
+                </button>
                 {/* Person 2 */}
                 {/* <div className="w-12 h-12 bg-white flex items-center justify-center rounded-full overflow-hidden shadow-sm text-primary-600">
                     <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" className="w-full h-full object-cover object-center" alt="" />

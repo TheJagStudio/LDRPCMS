@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Components/CommonComponents/Navbar";
 import Footer from "../Components/CommonComponents/Footer";
 
@@ -6,9 +6,10 @@ import Footer from "../Components/CommonComponents/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Pagination, EffectCoverflow } from "swiper/modules";
 
 const LandingPage = () => {
     const serviceDetails = [
@@ -95,6 +96,8 @@ const LandingPage = () => {
         },
     ];
 
+    // const gallery = ["/static/images/1.jpg", "/static/images/2.jpg", "/static/images/3.jpg", "/static/images/4.jpg", "/static/images/5.jpg", "/static/images/6.jpg"];
+
     const teamDetails = [
         {
             name: "Jagrat Patel",
@@ -127,36 +130,34 @@ const LandingPage = () => {
                 <div className="h-[95vh] w-full absolute top-0 left-0 [clip-path:ellipse(200vw_100vw_at_50%_38%)] sm:[clip-path:ellipse(75%_60%_at_50%_38%)]" style={{ backgroundImage: "url('/static/images/LDRPCampas.png')", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center", backgroundBlendMode: "difference" }}></div>
 
                 <div className="flex items-center justify-center gap-6 z-50 w-full h-full">
-                    <h1 className="text-white text-6xl max-w-[700px] text-center font-light leading-snug">
+                    <h1 className="text-white sm:text-6xl text-5xl max-w-[700px] text-center font-light leading-snug">
                         We Share <span className="font-semibold">Creativity</span> and Design Thinking
                     </h1>
                 </div>
             </section>
 
             {/* Interior */}
-            <section className="xl:px-40 xl:py-20 flex flex-col gap-14 items-center justify-center h-full">
+            <section className="xl:px-40 lg:px-28 md:px-16 sm:px-14 px-10 lg:py-20 md:py-14 py-12 flex flex-col gap-14 items-center justify-center h-full">
                 <div className="flex items-center justify-center flex-col w-full h-full">
                     <p className="uppercase text-xs bg-green-100 font-bold text-green-600 p-1 px-3 rounded-full shadow-sm  shadow-green-200 w-fit mb-3">Our Story</p>
-                    <div className="flex items-center justify-center h-32 relative mb-6">
-                        <h1 className="text-[10rem] select-none font-bold text-textColor-100/80 uppercase absolute -z-[1]">Interior</h1>
-                        <p className="text-textColor-500 text-3xl z-[1]">
-                            Creating <span className="text-textColor-700 font-semibold">Your Space</span> Detail by detail
+                    <div className="flex flex-col items-center justify-center h-32 relative mb-6">
+                        <h1 className="lg:text-[10rem] sm:text-[8rem] text-[3.5rem] sm:mb-0 -mb-3 select-none font-bold sm:text-textColor-100/80 text-textColor-200 uppercase sm:absolute -z-[1]">About</h1>
+                        <p className="text-textColor-500 text-2xl sm:text-3xl z-[1] text-center">
+                            <span className="text-textColor-700 font-semibold">LDRP ITR : </span> Shaping Futures, Inspiring Innovation
                         </p>
                     </div>
-                    <p className="text-center text-textColor-600 max-w-[800px] mx-auto">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <p className="text-center text-textColor-600 max-w-[800px] mx-auto">LDRP ITR is a beacon of academic excellence, fostering innovation and holistic growth. With a dedicated focus on quality education, research, and industry relevance, we empower our students to become future leaders and make a meaningful impact on society.</p>
                 </div>
-                <div className="flex items-center justify-center gap-20 w-full h-full">
-                    <div className="relative w-1/2 h-full">
-                        <img src="https://c4.wallpaperflare.com/wallpaper/431/451/684/the-most-beautiful-picture-of-nature-wallpaper-preview.jpg" alt="" className="w-full h-full object-cover object-center rounded-lg z-10" />
-                        <img src="https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg" alt="" className="absolute top-6 right-6 w-full h-full object-cover object-center rounded-lg -z-[1]" />
+                <div className="flex sm:flex-row flex-col items-center justify-center lg:gap-20 gap-14 w-full h-full">
+                    <div className="relative w-[85%] ml-3 sm:ml-0 sm:w-1/2 h-full">
+                        <img src="/static/images/2.jpg" alt="" className="w-full h-full object-cover object-center rounded-lg z-10" />
+                        <img src="https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg" alt="" className="absolute top-4 sm:top-6 right-4 sm:right-6 w-full h-full object-cover object-center rounded-lg -z-[1]" />
                     </div>
-                    <div className="flex flex-col items-start justify-center gap-8 w-1/2 h-full">
-                        <p className="uppercase text-xs bg-green-100 font-bold text-green-600 p-1 px-3 rounded-full shadow-sm  shadow-green-200 w-fit mb-3">Taste</p>
-                        <p className="text-3xl text-textColor-400">
-                            We Fry and <span className="text-textColor-600 font-semibold">Brew Only</span> the Best <span className="text-textColor-600 font-semibold">Coffee</span> from all Over the World
-                        </p>
+                    <div className="flex flex-col items-start justify-center gap-4 md:gap-8 w-full sm:w-1/2 h-full">
+                        <p className="uppercase text-xs bg-green-100 font-bold text-green-600 p-1 px-3 rounded-full shadow-sm  shadow-green-200 w-fit mb-3">About</p>
+                        <p className="text-3xl text-textColor-400">Pioneering education, fostering innovation, and nurturing leaders for a transformative future in technology and research.</p>
                         <button className="w-fit text-textColor-800 font-semibold py-3 text-lg px-1 flex items-center gap-3 hover:gap-6 transition-all duration-300">
-                            From $5
+                            Continue
                             <span>
                                 <svg fill="currentColor" className="w-4 h-4" viewBox="0 0 16 16">
                                     <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
@@ -168,96 +169,119 @@ const LandingPage = () => {
             </section>
 
             {/* Services */}
-            <section className="xl:px-40 xl:py-20 flex flex-col gap-14 items-center justify-center h-full">
+            <section className="xl:px-40 lg:px-28 md:px-16 sm:px-14 px-10 lg:py-20 md:py-14 py-12 flex flex-col sm:gap-14 gap-10 items-center justify-center h-full">
                 <div className="flex items-center justify-center flex-col w-full h-full">
                     <p className="uppercase text-xs bg-green-100 font-bold text-green-600 p-1 px-3 rounded-full shadow-sm  shadow-green-200 w-fit mb-3">Our Story</p>
-                    <div className="flex items-center justify-center h-32 relative mb-6">
-                        <h1 className="text-[10rem] select-none font-bold text-textColor-100/80 uppercase absolute -z-[1]">Services</h1>
-                        <p className="text-textColor-500 text-3xl z-[1]">
-                            Space <span className="text-textColor-700 font-semibold">Design is Our</span> Passion
+                    <div className="flex flex-col items-center justify-center h-32 relative mb-6">
+                        <h1 className="lg:text-[10rem] sm:text-[8rem] text-[3.5rem] sm:mb-0 -mb-3 select-none font-bold sm:text-textColor-100/80 text-textColor-200 uppercase sm:absolute -z-[1]">Services</h1>
+                        <p className="text-textColor-500 text-2xl sm:text-3xl z-[1] text-center">
+                            Our <span className="text-textColor-700 font-semibold">Services</span>
                         </p>
                     </div>
-                    <p className="text-center text-textColor-600 max-w-[800px] mx-auto">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <p className="text-center text-textColor-600 max-w-[800px] mx-auto">Our platform offers a seamless experience with features like a chat app for easy communication, leave requests for faculty, complaint submission, and an online attendance system, streamlining administrative processes for enhanced efficiency and convenience.</p>
                 </div>
-                <div className="flex items-center justify-center gap-8 w-full h-full">
+                <div className="flex sm:flex-nowrap flex-wrap items-center justify-center sm:gap-8 gap-4 w-full h-full">
                     {serviceDetails.map((item, i) => (
-                        <div key={i} className="flex items-center justify-center flex-col gap-6 bg-white shadow rounded-lg p-3 w-72 h-48">
-                            <p className="relative">
-                                {item.svg}
-                                <div className={`absolute -top-2 -left-2 bg-${item.color}-100 w-10 h-10 rounded-full -z-[1]`} />
-                            </p>
-                            <p className="text-textColor-500 font-semibold">{item.name}</p>
+                        <div key={i} className="flex items-center justify-center flex-col sm:gap-6 gap-3 bg-white shadow rounded-lg p-3 sm:w-72 w-full sm:h-48 h-32">
+                            <span className="relative">{item.svg}</span>
+                            <p className="text-textColor-500 font-semibold text-center">{item.name}</p>
                         </div>
                     ))}
                 </div>
             </section>
 
-            {/* Projects */}
-            <section className="xl:px-40 xl:py-14 flex flex-col gap-14 items-center justify-center h-full">
+            {/* Gallery */}
+            <section className="xl:px-40 lg:px-28 md:px-16 sm:px-14 px-10 lg:py-14 md:py-14 py-12 flex flex-col gap-14 items-center justify-center h-full">
                 <div className="flex items-center justify-center flex-col w-full h-full">
-                    <p className="uppercase text-xs bg-green-100 font-bold text-green-600 p-1 px-3 rounded-full shadow-sm  shadow-green-200 w-fit mb-3">Projects</p>
-                    <div className="flex items-center justify-center h-32 relative mb-6">
-                        <h1 className="text-[10rem] select-none font-bold text-textColor-100/80 uppercase absolute -z-[1]">Projects</h1>
-                        <p className="text-textColor-500 text-3xl z-[1]">
-                            We Treat <span className="text-textColor-700 font-semibold">Every Project</span> With Love
+                    <p className="uppercase text-xs bg-green-100 font-bold text-green-600 p-1 px-3 rounded-full shadow-sm  shadow-green-200 w-fit mb-3">Gallery</p>
+                    <div className="flex flex-col items-center justify-center h-32 relative mb-6">
+                        <h1 className="lg:text-[10rem] sm:text-[8rem] text-[3.5rem] sm:mb-0 -mb-3 select-none font-bold sm:text-textColor-100/80 text-textColor-200 uppercase sm:absolute -z-[1]">Gallery</h1>
+                        <p className="text-textColor-500 text-2xl sm:text-3xl z-[1] text-center">
+                            Explore Our <span className="text-textColor-700 font-semibold">Vibrant Campus Life</span> Here
                         </p>
                     </div>
-                    <p className="text-center text-textColor-600 max-w-[800px] mx-auto">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <p className="text-center text-textColor-600 max-w-[800px] mx-auto">Discover moments captured in our vibrant campus life through our gallery. Explore events, activities, and the essence of the LDRP ITR community in these captivating visuals.</p>
                 </div>
-                {/* Projects List */}
+                {/* Gallery */}
                 <div className="flex flex-col items-center justify-center gap-14 w-full h-full">
-                    {projectDetails.map((project, i) => (
-                        <div className="w-full h-[500px] rounded-xl flex items-center justify-center overflow-hidden shadow-xl" key={i}>
-                            <div className="w-[60%] h-full">
+                    <Swiper
+                        effect={"coverflow"}
+                        grabCursor={true}
+                        centeredSlides={true}
+                        slidesPerView={"auto"}
+                        coverflowEffect={{
+                            rotate: 50,
+                            stretch: 0,
+                            // depth: 100,
+                            // modifier: 1,
+                        }}
+                        modules={[EffectCoverflow, Pagination]}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        className="mySwiper landingPageSwiper w-full overflow-hidden md:h-[500px] h-auto  flex md:flex-row flex-col items-center justify-center rounded-xl"
+                    >
+                        {Array(1, 3, 4, 5, 6).map((item, i) => {
+                            return (
+                                <SwiperSlide key={i} className="w-full h-full">
+                                    <img src={"/static/images/" + item + ".jpg"} alt="Image" className="w-full h-full object-cover object-center" />
+                                </SwiperSlide>
+                            );
+                        })}
+                    </Swiper>
+
+                    {/* {projectDetails.map((project, i) => (
+                        <div className="w-full md:h-[500px] h-auto rounded-xl flex md:flex-row flex-col items-center justify-center overflow-hidden shadow-xl" key={i}>
+                            <div className="lg:w-[60%] md:w-1/2 w-full h-full">
                                 <Swiper
                                     pagination={{
                                         clickable: true,
                                     }}
                                     modules={[Pagination]}
-                                    className="landingPageSwiper w-full h-full"
+                                    className="landingPageSwiper w-full md:h-full sm:h-96 h-72"
                                 >
                                     {project.img.map((imgSrc, index2) => (
-                                        <SwiperSlide key={index2} className="w-full h-full">
+                                        <SwiperSlide key={index2} className="w-full h-full overflow-hidden">
                                             <img src={imgSrc} alt="" className="w-full h-full object-cover object-center" />
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>
                             </div>
-                            <div className="w-full h-full bg-white p-10 flex flex-col justify-center gap-6">
-                                <h2 className="text-3xl text-textColor-700 font-bold">{project.name}</h2>
-                                <div className="flex flex-col gap-6 mt-2 mb-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+                            <div className="w-full h-full bg-white xl:p-10 p-6 flex flex-col justify-center sm:gap-6 gap-3">
+                                <h2 className="sm:text-3xl text-2xl text-textColor-700 font-bold">{project.name}</h2>
+                                <div className="flex flex-col lg:gap-6 gap-4 mt-2 sm:mb-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-1 gap-2">
                                         <div>
-                                            <p className="text-textColor-300 mb-2">Location</p>
+                                            <p className="text-textColor-300 sm:mb-2">Location</p>
                                             <p className="text-textColor-600 font-medium">{project.projectlocation}</p>
                                         </div>
                                         <div>
-                                            <p className="text-textColor-300 mb-2">Size</p>
+                                            <p className="text-textColor-300 sm:mb-2">Size</p>
                                             <p className="text-textColor-600 font-medium">{project.projectSize}</p>
                                         </div>
                                     </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-1 gap-2">
                                         <div>
-                                            <p className="text-textColor-300 mb-2">Project Type</p>
+                                            <p className="text-textColor-300 sm:mb-2">Project Type</p>
                                             <p className="text-textColor-600 font-medium">{project.projectType}</p>
                                         </div>
                                         <div>
-                                            <p className="text-textColor-300 mb-2">Scope</p>
+                                            <p className="text-textColor-300 sm:mb-2">Scope</p>
                                             <p className="text-textColor-600 font-medium">{project.projectScope}</p>
                                         </div>
                                     </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-1 gap-2">
                                         <div>
-                                            <p className="text-textColor-300 mb-2">Finish Carpentry</p>
+                                            <p className="text-textColor-300 sm:mb-2 truncate pr-3">Finish Carpentry</p>
                                             <p className="text-textColor-600 font-medium">{project.finishCarpentry}</p>
                                         </div>
                                         <div>
-                                            <p className="text-textColor-300 mb-2">Custom Carpentry</p>
+                                            <p className="text-textColor-300 sm:mb-2 truncate">Custom Carpentry</p>
                                             <p className="text-textColor-600 font-medium">{project.customCarpentry}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <button className="w-fit text-textColor-800 font-medium py-3 text-lg px-1 flex items-center gap-3 hover:gap-6 transition-all duration-300">
+                                <button className="w-fit text-textColor-800 font-medium sm:py-3 py-2 text-lg px-1 flex items-center gap-3 hover:gap-6 transition-all duration-300">
                                     View Project
                                     <span>
                                         <svg fill="currentColor" className="w-4 h-4" viewBox="0 0 16 16">
@@ -267,34 +291,37 @@ const LandingPage = () => {
                                 </button>
                             </div>
                         </div>
-                    ))}
+                    ))} */}
                 </div>
             </section>
 
             {/* Team */}
-            <section className="xl:px-40 xl:py-14 xl:pb-40 flex flex-col gap-14 items-center justify-center h-full">
+            {/* <section className="xl:px-40 lg:px-28 md:px-16 sm:px-14 px-10 lg:py-14 lg:pb-40 md:py-14 py-12 flex flex-col gap-14 items-center justify-center h-full">
                 <div className="flex items-center justify-center flex-col w-full h-full">
                     <p className="uppercase text-xs bg-green-100 font-bold text-green-600 p-1 px-3 rounded-full shadow-sm  shadow-green-200 w-fit mb-3">Team</p>
-                    <div className="flex items-center justify-center h-32 relative mb-6">
-                        <h1 className="text-[10rem] select-none font-bold text-textColor-100/80 uppercase absolute -z-[1]">Team</h1>
-                        <p className="text-textColor-500 text-3xl z-[1]">
+                    <div className="flex flex-col items-center justify-center h-32 relative mb-6">
+                        <h1 className="lg:text-[10rem] sm:text-[8rem] text-[3.5rem] sm:mb-0 -mb-3 select-none font-bold sm:text-textColor-100/80 text-textColor-200 uppercase sm:absolute -z-[1]">Team</h1>
+                        <p className="text-textColor-500 text-2xl sm:text-3xl z-[1] text-center">
                             Our <span className="text-textColor-700 font-bold">Team of True</span> Professionals
                         </p>
                     </div>
-                    <p className="text-center text-textColor-600 max-w-[800px] mx-auto">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <p className="text-center text-textColor-600 max-w-[800px] mx-auto">Meet our dedicated Developer Team at LDRP ITR, the creative minds behind our website's design and functionality. They work collaboratively to ensure an exceptional online experience for our users, combining expertise, innovation, and a passion for technology.</p>
+                    <p className="text-center text-textColor-600 max-w-[800px] mx-auto font-bold mt-2">
+                        - Developed under <span>Computer Department</span>
+                    </p>
                 </div>
-                <div className="flex xl:flex-nowrap flex-wrap items-center justify-center mx-auto gap-8 w-full h-full">
+                <div className="flex xl:flex-nowrap flex-wrap items-start justify-center mx-auto gap-8 w-full h-full">
                     {teamDetails.map((member, i) => (
-                        <div key={i} className="rounded-xl shadow-xl overflow-hidden flex flex-col xl:even:translate-y-14">
-                            <img src={member.img} alt="" className="xl:w-80 md:w-72 w-[17rem] xl:h-80 md:h-72 h-[17rem] object-cover object-center" />
+                        <div key={i} className="rounded-xl shadow-xl overflow-hidden flex flex-col xl:even:translate-y-14 xl:w-80 lg:w-72 w-[17rem]">
+                            <img src={member.img} alt="" className=" xl:h-80 lg:h-72 h-[17rem] w-full object-cover object-center" />
                             <div className="flex flex-col items-center justify-center gap-1 p-4 sm:py-6">
                                 <p className="text-textColor-700 font-bold sm:text-2xl text-xl text-center">{member.name}</p>
-                                <p className="text-textColor-400 font-bold sm:text-lg text-center">{member.designation}</p>
+                                <p className="text-textColor-400 lg:font-bold sm:text-lg text-center">{member.designation}</p>
                             </div>
                         </div>
                     ))}
                 </div>
-            </section>
+            </section> */}
 
             <Footer />
         </div>

@@ -4,7 +4,7 @@ import Message from "../../Components/SuperAdmin/Space/Message";
 import { useAtom } from "jotai";
 import { lastMessageAtom } from "../../Variables";
 
-const SpacePage = () => {
+const AttendanceSpace = () => {
     const [inputMsg, setInputMsg] = useState("");
     const [msgArr, setMsgArr] = useState([]);
     const [lastMessage, setLastMessage] = useAtom(lastMessageAtom);
@@ -23,7 +23,6 @@ const SpacePage = () => {
             }
         }
     }, [lastMessage]);
-
     return (
         <div className="flex flex-col w-full h-full">
             <div className="w-full ">
@@ -158,4 +157,4 @@ const SpacePage = () => {
     );
 };
 
-export default SpacePage;
+export default AttendanceSpace;

@@ -1,0 +1,26 @@
+studentArr = json.loads(open("Students.json").read())
+    count = 0
+    for student in studentArr:
+        try:
+            newUser = User()
+            newUser.username = student["first_name"]
+            newUser.first_name = student["first_name"]
+            newUser.last_name = ""
+            newUser.email = student["email"]
+            newUser.set_password("Ldrp@123")
+            newUser.save()
+        except:
+            newUser = User.objects.get(email=student["email"])
+
+        newStudent = Student()
+        newStudent.user = newUser
+        newStudent.enrollmentNo = "20BECE3" + str(count).zfill(4)
+        newStudent.department = Department.objects.get(name="Computer Engineering")
+        newStudent.semester = Semester.objects.get(name="CE-"+str((count % 8)+1), department=newStudent.department)
+        newStudent.division = Division.objects.get(name=random.choice(["A", "B", "C"]), department=newStudent.department, semester=newStudent.semester)
+        newStudent.gender = "male" if random.choice([0, 1]) == 1 else "female"
+        newStudent.phone = "1234567890"
+        newStudent.is_member = False
+        newStudent.batch = str(random.choice([2020, 2021, 2022, 2023])) + "-01-01"
+        newStudent.save()
+    return HttpResponse("Done")

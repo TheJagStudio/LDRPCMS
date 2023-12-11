@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
 
+import { useAtom } from "jotai";
+import { userInfo } from "./Variables";
 // Pages
 // SuperAdmin
 import SuperAdmin from "./Pages/SuperAdmin/SuperAdmin";
@@ -13,6 +16,15 @@ import PMS from "./Pages/PMS";
 import Admin from "./Pages/Admin/Admin";
 import AdminHomePage from "./Pages/Admin/AdminHomePage";
 import AdminUsers from "./Pages/Admin/AdminUsers";
+
+// Faculty
+
+import Faculty from "./Pages/Faculty/Faculty";
+import FacultyDashboard from "./Pages/Faculty/FacultyDashboard";
+import LabComplain from "./Pages/Faculty/LabComplain";
+import FacultyRequestForm from "./Pages/Faculty/FacultyRequestForm";
+import StudentRequestsList from "./Pages/Faculty/StudentRequestsList";
+import FacultySpace from "./Pages/Faculty/FacultySpace";
 
 // Attendance
 import Attendance from "./Pages/Attendance/Attendance";
@@ -33,8 +45,16 @@ import LoginPage from "./Pages/LoginPage";
 import Page404 from "./Pages/Page404";
 import Page500 from "./Pages/Page500";
 import LandingPage from "./Pages/LandingPage";
+import ForgotPassword from "./Pages/ForgotPassword";
+import AttendanceSpace from "./Pages/Attendance/AttendanceSpace";
 
 function App() {
+    const [userInfoAtom, setUserInfoAtom] = useAtom(userInfo);
+    useEffect(() => {
+        if (localStorage.getItem("user") && userInfoAtom.username == "") {
+            setUserInfoAtom(JSON.parse(localStorage.getItem("user")));
+        }
+    });
     return (
         <Router>
             <Routes>
@@ -56,6 +76,14 @@ function App() {
                     <Route path="/admin/space" element={<SpacePage />} />
                     <Route path="/admin/pms" element={<PMS />} />
                 </Route>
+                {/* Faculty */}
+                <Route element={<Faculty />}>
+                    <Route path="/faculty/" element={<FacultyDashboard />} />
+                    <Route path="/faculty/lab-complain" element={<LabComplain />} />
+                    <Route path="/faculty/request" element={<FacultyRequestForm />} />
+                    <Route path="/faculty/student-requests" element={<StudentRequestsList />} />
+                    <Route path="/faculty/space" element={<FacultySpace />} />
+                </Route>
                 {/* Student */}
                 <Route element={<Student />}>
                     <Route path="/student/" element={<StudentDashboard />} />
@@ -70,9 +98,11 @@ function App() {
                 <Route element={<Attendance />}>
                     <Route path="/attendance/" element={<AttendanceHome />} />
                     <Route path="/attendance/report" element={<AttendanceReport />} />
+                    <Route path="/attendance/space" element={<AttendanceSpace />} />
                 </Route>
                 {/* Common */}
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/*" element={<Page404 />} />
                 <Route path="/error" element={<Page500 />} />
             </Routes>

@@ -708,3 +708,13 @@ button[data-draftail-balloon] {
     -webkit-box-shadow: -10px 0 0 var(--primary-300) !important;
     box-shadow: -10px 0 0 var(--primary-300) !important;
 }
+
+.otpInput::-webkit-outer-spin-button,
+.otpInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.otpInput {
+    -moz-appearance: textfield;
+}

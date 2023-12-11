@@ -4,7 +4,7 @@ import Message from "../../Components/SuperAdmin/Space/Message";
 import { useAtom } from "jotai";
 import { lastMessageAtom } from "../../Variables";
 
-const SpacePage = () => {
+const AttendanceSpace = () => {
     const [inputMsg, setInputMsg] = useState("");
     const [msgArr, setMsgArr] = useState([]);
     const [lastMessage, setLastMessage] = useAtom(lastMessageAtom);
@@ -23,7 +23,6 @@ const SpacePage = () => {
             }
         }
     }, [lastMessage]);
-
     return (
         <div className="flex flex-col w-full h-full">
             <div className="w-full ">
@@ -62,13 +61,6 @@ const SpacePage = () => {
                             <div className="flex flex-nowrap gap-2 items-center justify-end">
                                 <p className="text-green-400 font-bold hidden lg:block">+2</p>
                                 <p className="text-textColor-400 font-bold w-10 text-end hidden lg:block">553</p>
-                            </div>
-                        </div>
-                        <div className="h-12 w-full px-3 pl-3 lg:pl-10 group flex flex-nowrap justify-between items-center cursor-pointer hover:bg-slate-100">
-                            <p className="text-textColor-600 font-bold">All Admins</p>
-                            <div className="flex flex-nowrap gap-2 items-center justify-end">
-                                <p className="text-green-400 font-bold hidden lg:block">+5</p>
-                                <p className="text-textColor-400 font-bold w-10 text-end hidden lg:block">4</p>
                             </div>
                         </div>
                         <div className="h-12 w-full px-3 pl-3 lg:pl-10 group flex flex-nowrap justify-between items-center cursor-pointer hover:bg-slate-100">
@@ -158,4 +150,4 @@ const SpacePage = () => {
     );
 };
 
-export default SpacePage;
+export default AttendanceSpace;

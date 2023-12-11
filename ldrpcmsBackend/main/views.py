@@ -1,9 +1,17 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
+from django.middleware.csrf import get_token
 import json
 from .models import Department, Semester, Division, Subject, Faculty, LabAssistant, HOD, Student, EventDetails, CalendarDetails
 import os
+from django.contrib.auth import authenticate, login, logout
+import random
+import datetime
+from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
+import requests
 
 skinColor = ["#efbb96", "#efc088", "#e9cba7", "#eed0b8", "#f7ddc4", "#f7e2ab", "#d09e7d", "#cb9662", "#ab8b64", "#94623d"]
 avaColor = ["#000000", "#6bd9e9", "#77311d", "#9287ff", "#ac6651", "#d2eff3", "#e0ddff", "#f4d150", "#f9c9b6", "#fc909f", "#ffeba4", "#ffedef"]
@@ -227,22 +235,117 @@ def avatarCreator(request):
     return response
 
 
-def dataAdder(request):
-    asstArr = [["Hardik Patel", "hardik_ce@ldrp.ac.in", "male"], ["Bhavik Patel", "bhavik_ce@ldrp.ac.in", "male"], ["Nilam Patel", "nilam_ce@ldrp.ac.in", "female"], ["Ravi Patel", "ravi_ce@ldrp.ac.in", "male"], ["Jay Patel", "hardik_ce@ldrp.ac.in", "male"]]
-    for asst in asstArr:
-        newUser = User()
-        newUser.username = asst[0]
-        newUser.first_name = asst[0]
-        newUser.last_name = ""
-        newUser.email = asst[1]
-        newUser.set_password("Ldrp@123")
-        newUser.save()
+@login_required
+def userInfo(request):
+    user = request.user
+    role = request.session.get('role')
+    gender = request.session.get('gender')
+    data = {
+        'username': (user.username).strip(),
+        'email': (user.email).strip(),
+        'first_name': (user.first_name).strip(),
+        'last_name': (user.last_name).strip(),
+        'role': role,
+        'gender': gender
+    }
+    return JsonResponse(data)
 
-        newAsst = LabAssistant()
-        newAsst.user = newUser
-        newAsst.phone = "1234567890"
-        newAsst.department = Department.objects.get(name="Computer Engineering")
-        newAsst.gender = asst[2]
-        newAsst.labName = "lab C1"
-        newAsst.save()
+
+def get_user_role(user):
+    try:
+        faculty = Faculty.objects.get(user=user)
+        return faculty.gender, "Faculty"
+    except Faculty.DoesNotExist:
+        try:
+            lab_assistant = LabAssistant.objects.get(user=user)
+            return lab_assistant.gender, "Lab Assistant"
+        except LabAssistant.DoesNotExist:
+            try:
+                hod = HOD.objects.get(user=user)
+                return hod.gender, "HOD"
+            except HOD.DoesNotExist:
+                try:
+                    student = Student.objects.get(user=user)
+                    return student.gender, "Student"
+                except Student.DoesNotExist:
+                    return "male", "Admin"
+
+
+@csrf_exempt
+def userLogin(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        rememberMe = request.POST.get('rememberMe')
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return JsonResponse({'success': False, 'message': 'This email is not registered'})
+        user = authenticate(request, username=user.username, password=password)
+        if user is not None:
+            login(request, user)
+            if rememberMe:
+                request.session.set_expiry(0)
+            else:
+                request.session.set_expiry(3600)
+            gender, role = get_user_role(user)
+            request.session['role'] = role
+            request.session['gender'] = gender
+            data = {
+                'username': (user.username).strip(),
+                'email': (user.email).strip(),
+                'first_name': (user.first_name).strip(),
+                'last_name': (user.last_name).strip(),
+                'role': role,
+                'gender': gender
+            }
+            return JsonResponse({'success': True, 'message': 'Login successful', 'data': data})
+        else:
+            return JsonResponse({'success': False, 'message': 'Invalid email or password'})
+    else:
+        return JsonResponse({'success': False, 'message': 'Invalid request method'})
+
+
+@csrf_exempt
+@login_required
+def userLogout(request):
+    try:
+        logout(request)
+        return JsonResponse({'success': True, 'message': 'Logout successful'})
+    except:
+        return JsonResponse({'success': False, 'message': 'Logout failed'})
+
+
+@login_required
+def msgSender(request):
+    # try:
+    if request.method == "GET":
+        msg = request.GET.get("msg")
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
+
+        data = {
+            "message": msg,
+            "name": request.user.first_name + " " + request.user.last_name,
+            "role": request.session.get("role"),
+            "time": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+            "gender": request.session.get("gender")
+        }
+        data = json.dumps(data)
+        response = requests.post('https://thejagstudio-ntfy.hf.space/AllLdrp', headers=headers, data=data)
+        output = response.json()
+        print(output)
+        return HttpResponse(json.dumps(output), content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({"success": False, "message": "Invalid request method"}), content_type="application/json")
+    # except Exception as e:
+    #     return HttpResponse(json.dumps({"success": False, "message": "Error : "+str(e)}), content_type="application/json")
+
+
+def dataAdder(request):
+    students = Student.objects.all()
+    for student in students:
+        student.division = Division.objects.get(id=1)
+        student.save()
     return HttpResponse("Done")

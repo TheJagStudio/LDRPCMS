@@ -1,6 +1,13 @@
 import { atom } from "jotai";
 
-export const sideBarAtom = atom(false);
+export const sideBarAtom = atom(true);
 
-// Only for temporary purposes
-export const tempUserName = atom({ name: "Shubham Bhogayata", gender: "male" });
+export const lastMessageAtom = atom("");
+export const userInfo = atom({
+    username: "",
+    email: "",
+    first_name: "",
+    last_name: "",
+    role: "",
+    gender: "",
+});

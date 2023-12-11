@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 
+// Atoms
+import { useAtom } from "jotai";
+import { userInfo } from "../../Variables";
+
 const StudentProfile = () => {
     const [username, setUsername] = useState("ldrp123");
     const [email, setEmail] = useState("ldrp@gmail.com");
     const [firstName, setFirstName] = useState("ldrp123");
     const [lastName, setLastName] = useState("ldrp123");
+    const [userInfoAtom, setUserInfoAtom] = useAtom(userInfo);
 
     return (
         <div className="flex flex-nowrap w-full h-full lg:px-0 md:px-10 px-6">
@@ -53,7 +58,7 @@ const StudentProfile = () => {
                         <div class="flex flex-col w-full md:w-1/3 h-full p-5 sm:p-8">
                             <h1 class="text-textColor-600 font-bold text-lg mb-3 sm:mb-5">Account Image</h1>
                             <div class=" w-full h-auto aspect-square bg-textColor-100 rounded-lg flex flex-col items-center justify-center p-6 relative mb-3">
-                                <img src="https://api.dicebear.com/6.x/micah/svg?seed=John Doe&amp;baseColor=f9c9b6&amp;eyes=eyes,eyesShadow,round&amp;facialHairColor=000000,transparent&amp;facialHairProbability=20&amp;hair=fonze,mrT,mrClean,turban&amp;mouth=laughing,smile,smirk" alt="" class=" w-full h-full aspect-square object-cover object-center rounded" id="profileImg" />
+                                <img src={process.env.REACT_APP_SERVER + "/api/main/avatarCreator?gender=" + userInfoAtom.gender + "&name=" + (userInfoAtom.first_name + userInfoAtom.last_name)} alt="" class=" w-full h-full aspect-square object-cover object-center rounded" id="profileImg" />
                             </div>
                         </div>
                         <form class="flex flex-col h-full w-full md:w-2/3 p-5 sm:p-8 pb-8 sm:pb-10 md:border-l md:border-borderColor">

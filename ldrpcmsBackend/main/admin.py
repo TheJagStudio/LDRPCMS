@@ -9,9 +9,11 @@ class DepartmentAdmin(ExportActionMixin, admin.ModelAdmin):
 
 
 class SemesterAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_display = ("name", "department", "is_active")
+    list_display = ("name", "department", "is_active",)
     list_filter = ["department__name", "is_active"]
     search_fields = ["name", "department__name"]
+    # list_display_links = ('is_active',)
+    # list_editable = ("name",)
 
 
 class DivisionAdmin(ExportActionMixin, admin.ModelAdmin):
@@ -40,13 +42,13 @@ class LabAssistantAdmin(ExportActionMixin, admin.ModelAdmin):
 
 class HODAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ("user", "department", "phone", "is_active")
-    search_fields = ["user__firstname", "department__name"]
+    search_fields = ["user__first_name", "department__name"]
     list_filter = ["department__name", "is_active"]
 
 
 class StudentAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ("user", "enrollmentNo", "department", "semester", "division", "phone", "batch", "is_active")
-    search_fields = ["user__firstname", "enrollmentNo", "department__name", "semester__name", "division__name", "batch"]
+    search_fields = ["user__first_name", "enrollmentNo", "department__name", "semester__name", "division__name", "batch"]
     list_filter = ["department__name", "semester__name", "division__name", "is_active"]
 
 
