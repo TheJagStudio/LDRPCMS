@@ -5,7 +5,7 @@ const UserdeleteModal = ({ data, users, setUsers, activeUser, setActiveUser, act
         <div className="fixed w-full h-full top-0 left-0 bg-black/20 flex items-center justify-center z-[999] scale-0 opacity-0 transition-all duration-300" id="userDeleteModal">
             <div className="bg-white w-1/2 max-w-[500px] rounded-lg p-5">
                 <p className="text-xl text-textColor-500 font-semibold">
-                    Are you sure you want to delete <span className="whitespace-nowrap">{data?.name}</span> ?
+                    Are you sure you want to delete <span className="whitespace-nowrap text-purple-600">{data?.name}</span> ?
                 </p>
                 <div className="w-full flex items-center justify-end gap-4 mt-5">
                     <div

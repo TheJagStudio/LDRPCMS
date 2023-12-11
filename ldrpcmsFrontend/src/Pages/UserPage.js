@@ -22,7 +22,7 @@ const Actions = () => {
 };
 
 const UserImage = ({ name, gender }) => {
-    return <img src={"https://api.dicebear.com/6.x/micah/svg?seed=" + name + "&baseColor=f9c9b6&eyes=eyes,eyesShadow,round&facialHairColor=000000,transparent&facialHairProbability=20&hair=" + (gender === "female" ? "dannyPhantom,full,pixie" : "fonze,mrT,mrClean,turban") + "&mouth=laughing,smile,smirk"} alt="avatar" className="rounded-md border bg-primary-100 border-primary-800 w-10 h-10" />;
+    return <img src={process.env.REACT_APP_SERVER + "/api/main/avatarCreator?gender=" + gender + "&name=" + name} alt="" className="rounded-md border bg-primary-100 border-primary-800 w-10 h-10" />
 };
 
 const UserPage = () => {
